@@ -9,8 +9,10 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var chosenAns=chosenAnswers.length.toString();
-    var questionLength=questions.length.toString();
+    var chosenAns = chosenAnswers.length.toString();
+    var questionLength = questions.length.toString();
+    var text =
+        "You answered $chosenAns out of  $questionLength questions correctly!";
     return Scaffold(
         body: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -23,7 +25,7 @@ class ResultScreen extends StatelessWidget {
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('You answered 5 out of 6 questions correctly!'),
+                Text(text),
                 const SizedBox(
                   height: 30,
                 ),

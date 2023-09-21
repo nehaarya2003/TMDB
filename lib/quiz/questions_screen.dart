@@ -26,8 +26,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
       }
     });
     if (selectedAnswers.length == questions.length) {
-      selectedAnswers = [];
       context.goNamed("result_screen", extra: selectedAnswers);
+      selectedAnswers = [];
     }
   }
 
