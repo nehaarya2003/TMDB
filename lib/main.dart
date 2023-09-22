@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sample/core/init/theme/app_theme.dart';
+
+import 'core/init/navigation/navigation_route.dart';
+import 'core/init/theme/light/light_theme_interface.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,24 +14,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MyHomePage(),
+    return  MaterialApp.router(
+      routerConfig: navigationRouter,
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-        child: Text(
-      "Hello World",
-      style: TextStyle(
-          color: Color.fromARGB(255, 208, 178, 33),
-          fontStyle: FontStyle.italic,
-          fontFamily: '.SF UI Text'),
-    ));
-  }
-}
