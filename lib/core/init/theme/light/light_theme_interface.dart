@@ -3,7 +3,7 @@ import 'package:sample/core/init/theme/light/text_theme_light.dart';
 
 import 'color_scheme_light.dart';
 
-abstract class ILightTheme {
+abstract mixin class ILightTheme {
   TextThemeLight? textThemeLight = TextThemeLight.instance;
   ColorSchemeLight? colorSchemeLight = ColorSchemeLight.instance;
   PaddingInsets insets = PaddingInsets();
