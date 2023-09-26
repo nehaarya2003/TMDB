@@ -1,9 +1,11 @@
-
 import 'package:awesome_flutter_extensions/awesome_flutter_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sample/view/onboard/blocs/onboarding/onboarding_bloc.dart';
 import 'package:sample/view/onboard/blocs/pager/pager_bloc.dart';
+
+import '../../../core/init/theme/light/color_scheme_light.dart';
+import '../model/onboarding_model.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -43,40 +45,54 @@ class OnBoardingView extends StatelessWidget {
 class OnBoardContent extends StatelessWidget {
   OnBoardContent({
     super.key,
-    required this.title,
+    required this.titles,
     required this.description,
   });
 
-  String title;
+  List<OnBoardingTitle> titles;
   String description;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Spacer(),
-        Text(
-          title,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+    var titleSpans = titles
+        .map((title) => TextSpan(
+            text: title.titleText,
+            style: Theme.of(context)
+                .textTheme
+                .headlineLarge
+                ?.copyWith(color: title.titleColor)))
+        .toList();
+    titleSpans.removeAt(0);
+
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Spacer(),
+          RichText(
+            text: TextSpan(
+              text: titles.elementAt(0).titleText,
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineLarge
+                  ?.copyWith(color: titles.elementAt(0).titleColor),
+              children: titleSpans,
+            ),
           ),
-        ),
-        const SizedBox(
-          height: 16,
-        ),
-        Text(
-          description,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
+
+          // Text(title, style: Theme.of(context).textTheme.headlineLarge),
+          const SizedBox(
+            height: 16,
           ),
-        ),
-        const Spacer(),
-      ],
+          Text(
+            description,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          const Spacer(),
+        ],
+      ),
     );
   }
 }
@@ -86,13 +102,7 @@ Widget buildList(OnboardingState onboardingState, PageController pageController,
   if (onboardingState is OnboardingData) {
     return Scaffold(
       body: Container(
-        // Background gradient
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(colors: <Color>[
-            Color(0x666750A4),
-            Color(0x66000000),
-          ]),
-        ),
+        color: Theme.of(buildContext).colorScheme.primaryContainer,
         child: BlocBuilder<OnPageNextBloc, OnPageChangeState>(
           builder: (context, onPageChangeState) {
             return Column(
@@ -142,7 +152,7 @@ Widget buildList(OnboardingState onboardingState, PageController pageController,
                     itemCount: onboardingState.listOnBoarding?.length,
                     controller: pageController,
                     itemBuilder: (context, index) => OnBoardContent(
-                      title: onboardingState.listOnBoarding![index].title,
+                      titles: onboardingState.listOnBoarding![index].titles,
                       description:
                           onboardingState.listOnBoarding![index].description,
                     ),
@@ -201,7 +211,25 @@ class LetsGoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(onPressed: () {}, child: const Text("Lets Go"));
+    return Container(
+      margin: const EdgeInsets.only(bottom: 48),
+      height: 40,
+      width: 120,
+      child: ElevatedButton(
+        onPressed: () => (),
+        style: ElevatedButton.styleFrom(
+            backgroundColor: ColorSchemeLight.buttonBackground),
+        // This is what you need!
+
+        child: Text(
+          " -> Lets Go",
+          style: Theme.of(context)
+              .textTheme
+              .titleMedium
+              ?.copyWith(color: ColorSchemeLight.black),
+        ),
+      ),
+    );
   }
 }
 

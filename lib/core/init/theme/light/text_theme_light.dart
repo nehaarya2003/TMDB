@@ -17,9 +17,12 @@ class TextThemeLight {
       displayLarge: headline1,
       displayMedium: headline2,
       displaySmall: headline3,
+      titleMedium: titleMedium,
+      headlineLarge: headlineLarge,
       headlineMedium: displayLarge,
       headlineSmall: displaySmall,
       labelSmall: overline,
+
     );
   }
 
@@ -55,10 +58,22 @@ class TextThemeLight {
       fontSize: 36,
       fontWeight: FontWeight.w400,
       letterSpacing: 1.5,
-      color: ColorSchemeLight.primary);
+      color: ColorSchemeLight.onPrimary);
   final TextStyle displayLarge = GoogleFonts.roboto(
       fontSize: 57,
       fontWeight: FontWeight.w400,
       letterSpacing: 1,
-      color: ColorSchemeLight.primary);
+      color: ColorSchemeLight.onPrimary);
+
+  final TextStyle headlineLarge = GoogleFonts.roboto(
+      fontSize: 32,
+      fontWeight: FontWeight.w400,
+      letterSpacing: 1,
+      color: ColorSchemeLight.onSurface);
+
+  final TextStyle titleMedium = GoogleFonts.roboto(
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      letterSpacing: 1,
+      color: ColorSchemeLight.onSurface);
 }

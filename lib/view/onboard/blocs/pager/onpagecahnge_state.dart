@@ -1,8 +1,7 @@
 part of 'pager_bloc.dart';
 
 class OnPageChangeState {
-  int currentIndex = 0;
-
+  int currentIndex;
   OnPageChangeState({required this.currentIndex});
 }
 
