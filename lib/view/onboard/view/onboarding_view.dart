@@ -1,6 +1,7 @@
 import 'package:awesome_flutter_extensions/awesome_flutter_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sample/view/onboard/blocs/onboarding/onboarding_bloc.dart';
 import 'package:sample/view/onboard/blocs/pager/pager_bloc.dart';
 
@@ -216,7 +217,7 @@ class LetsGoWidget extends StatelessWidget {
       height: 40,
       width: 120,
       child: ElevatedButton(
-        onPressed: () => (),
+        onPressed: () => (context.goNamed('auth')),
         style: ElevatedButton.styleFrom(
             backgroundColor: ColorSchemeLight.buttonBackground),
         // This is what you need!
