@@ -114,6 +114,7 @@ Widget buildList(OnboardingState onboardingState, PageController pageController,
                     "assets/images/onboarding.png",
                     height: screenHeight * 0.6,
                     width: double.infinity,
+                    fit: BoxFit.fill,
                     alignment: Alignment.center,
                   ),
                   Container(

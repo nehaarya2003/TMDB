@@ -8,13 +8,17 @@ class ColorSchemeLight {
   ColorScheme getLightColorScheme() {
     return const ColorScheme(
         primary: primary,
+        inversePrimary: inversePrimary,
         primaryContainer: primaryContainer,
+        onPrimaryContainer: onPrimaryContainer,
         secondary: secondary,
         secondaryContainer: secondaryContainer,
+        onSecondaryContainer: onSecondaryContainer,
         tertiary: tertiary,
         surface: surface,
         background: background,
         error: error,
+        onErrorContainer: onErrorContainer,
         onPrimary: onPrimary,
         onSecondary: onSecondary,
         onSurface: onSurface,
@@ -44,7 +48,7 @@ class ColorSchemeLight {
   static const Color surface = Color(0xffFEF7FF);
   static const Color inverseSurface = Color(0xff322F35);
   static const Color onInverseSurface = Color(0xffF5EFF7);
-  static const Color surfaceContainerHigh = Color(0xff2B2930);
+  static const Color surfaceContainerHigh = Color(0xffECE6F0);
   static const Color surfaceContainer = Color(0xffF3EDF7);
   static const Color onSurface = Color(0xff1D1B20);
   static const Color lightGray = Color(0xfff7f7f7);

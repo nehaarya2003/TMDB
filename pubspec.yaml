@@ -46,7 +46,8 @@ dependencies:
   flutter_svg: ^2.0.7
   google_fonts: ^6.1.0
   get_it: ^7.6.4
-  horizontal_card_pager: ^1.1.1
+  carousel_slider: ^4.2.1
+  persistent_bottom_nav_bar: ^5.0.2
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +79,10 @@ flutter:
       -  assets/images/authenticate.png
       -  assets/images/dark.svg
       -  assets/images/account.svg
+      -  assets/images/fav.svg
+      -  assets/images/movie.svg
+      -  assets/images/detail_fav.svg
+      -  assets/images/play.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

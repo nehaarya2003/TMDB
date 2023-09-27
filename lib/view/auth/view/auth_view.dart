@@ -35,18 +35,15 @@ class _LoginForm extends StatelessWidget {
           } else if (authState is AuthFailureState) {
             return const Text("login falied");
           } else {
-            return Container(
-              color: Theme.of(context).colorScheme.surface,
-              child: Center(
+            return  Center(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Image.asset(
                       "assets/images/auth.png",
                       height: context.sizes.height * 0.5,
                       width: double.infinity,
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                       alignment: Alignment.center,
                     ),
                     const SizedBox(height: 20.0),
@@ -74,8 +71,8 @@ class _LoginForm extends StatelessWidget {
                     )
                   ],
                 ),
-              ),
-            );
+              );
+
           }
         },
       ),
@@ -140,7 +137,7 @@ class _SubmitButton extends StatelessWidget {
         icon: Image.asset('assets/images/authenticate.png'),
         label: Text(
           'Authenticate',
-          style: Theme.of(context).textTheme.labelLarge,
+          style: Theme.of(context).textTheme.labelLarge?.copyWith(color: Theme.of(context).colorScheme.primary),
           textAlign: TextAlign.center,
         ),
       ),

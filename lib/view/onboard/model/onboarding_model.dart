@@ -24,7 +24,7 @@ final List<OnBoardingModel> onBoardingData = [
   OnBoardingModel(
     // title: "Get ready to BINGE",
     titles: [
-      OnBoardingTitle(titleText: "Get ready to", titleColor: ColorSchemeLight.onSurface),
+      OnBoardingTitle(titleText: "Get ready to", titleColor:  ColorSchemeLight.onSurface),
       OnBoardingTitle(titleText: " BINGE", titleColor: ColorSchemeLight.primary)
     ],
     description:
