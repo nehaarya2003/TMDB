@@ -1,26 +1,19 @@
-
+import 'package:awesome_flutter_extensions/awesome_flutter_extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sample/view/auth/blocs/auth_bloc.dart';
+import 'package:sample/view/common/tmdb_text_form_field.dart';
+import 'package:sample/view/content/view/content_view.dart';
 
 class AuthView extends StatelessWidget {
+  const AuthView({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthBloc, AuthState>(
-      listener: (context, state) {
-        if (state is AuthSuccessState) {
-          context.goNamed('content');
-         // Navigator.of(context).pushReplacement(ContentView().ro));
-        }
-        if (state is  AuthFailureState) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text("state.message"),
-            ),
-          );
-        }
-      },
+    return BlocProvider(
+      create: (_) => AuthBloc(),
       child: const _LoginForm(),
     );
   }
@@ -34,23 +27,57 @@ class _LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _LoginEmail(),
-            const SizedBox(height: 30.0),
-            _LoginPassword(),
-            const SizedBox(height: 30.0),
-            _SubmitButton(),
-            const SizedBox(height: 30.0),
-            _CreateAccountButton(),
-          ],
-        ),
+      resizeToAvoidBottomInset: false,
+      body: BlocBuilder<AuthBloc, AuthState>(
+        builder: (context, authState) {
+          if (authState is AuthSuccessState) {
+            return const ContentView();
+          } else if (authState is AuthFailureState) {
+            return const Text("login falied");
+          } else {
+            return Container(
+              color: Theme.of(context).colorScheme.surface,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      "assets/images/auth.png",
+                      height: context.sizes.height * 0.5,
+                      width: double.infinity,
+                      fit: BoxFit.fill,
+                      alignment: Alignment.center,
+                    ),
+                    const SizedBox(height: 20.0),
+                    Text(
+                      "Authentication",
+                      style: Theme.of(context).textTheme.displayMedium?.copyWith(color: Theme.of(context).colorScheme.onSurface),
+                    ),
+                    _LoginEmail(),
+                    const SizedBox(height: 10.0),
+                    const _LoginPassword(),
+                    const SizedBox(height: 10.0),
+                    _SubmitButton(),
+                    const SizedBox(height: 10.0),
+                    Padding(
+                      padding:
+                          const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+                      child: Text(
+                        "Note: If your credentials do not exist, a new account will be created automatically.",
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelMedium
+                            ?.copyWith(
+                                color: Theme.of(context).colorScheme.error),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            );
+          }
+        },
       ),
     );
   }
@@ -63,38 +90,27 @@ class _LoginEmail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width / 2,
-      child: TextField(
-        onChanged: ((value) {
-          context.read<AuthBloc>().add(SignUpEmailChangedEvent(email: value));
-        }),
-        decoration: const InputDecoration(hintText: 'Email'),
-      ),
+    return TmdbTextFormField(
+      hint: 'email',
+      formatters: [
+        FilteringTextInputFormatter.deny('\n'),
+      ],
     );
   }
 }
 
 class _LoginPassword extends StatelessWidget {
-  _LoginPassword({
+  const _LoginPassword({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width / 2,
-      child: TextField(
-        onChanged: ((value) {
-          context
-              .read<AuthBloc>()
-              .add(SignUpPasswordChangedEvent(password: value));
-        }),
-        obscureText: true,
-        decoration: const InputDecoration(
-          hintText: 'Password',
-        ),
-      ),
+    return TmdbTextFormField(
+      hint: 'password',
+      formatters: [
+        FilteringTextInputFormatter.deny('\n'),
+      ],
     );
   }
 }
@@ -106,27 +122,28 @@ class _SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        context.read<AuthBloc>().add(
-          SignUpButtonPressedEvent(),
-        );
-      },
-      child: const Text('Login'),
-    );
-  }
-}
-
-class _CreateAccountButton extends StatelessWidget {
-  const _CreateAccountButton({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        context.goNamed('content');
-      },
-      child: const Text('Create Account'),
+    return SizedBox(
+      width: 156.0,
+      height: 56.0,
+      child: ElevatedButton.icon(
+        onPressed: () {
+         /* context.read<AuthBloc>().add(
+                SignUpButtonPressedEvent(),
+              );*/
+          context.goNamed('content');
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Theme.of(context)
+              .colorScheme
+              .surfaceVariant, // This is what you need!
+        ),
+        icon: Image.asset('assets/images/authenticate.png'),
+        label: Text(
+          'Authenticate',
+          style: Theme.of(context).textTheme.labelLarge,
+          textAlign: TextAlign.center,
+        ),
+      ),
     );
   }
 }

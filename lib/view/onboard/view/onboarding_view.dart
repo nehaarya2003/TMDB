@@ -103,7 +103,7 @@ Widget buildList(OnboardingState onboardingState, PageController pageController,
   if (onboardingState is OnboardingData) {
     return Scaffold(
       body: Container(
-        color: Theme.of(buildContext).colorScheme.primaryContainer,
+        color: Theme.of(buildContext).colorScheme.surface,
         child: BlocBuilder<OnPageNextBloc, OnPageChangeState>(
           builder: (context, onPageChangeState) {
             return Column(

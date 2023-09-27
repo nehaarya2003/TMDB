@@ -40,8 +40,8 @@ final GoRouter navigationRouter = GoRouter(
           },
         ),
         GoRoute(
-          name: 'setting',
-          path: 'setting',
+          name: 'settings',
+          path: 'settings',
           builder: (BuildContext context, GoRouterState state) {
             return SettingView();
           },

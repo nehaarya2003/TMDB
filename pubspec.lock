@@ -168,6 +168,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.0"
+  horizontal_card_pager:
+    dependency: "direct main"
+    description:
+      name: horizontal_card_pager
+      sha256: "3d89054553d793371ed9108bfd60398c565ee91184a8845ba0183f28ab3be199"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
   http:
     dependency: transitive
     description:
@@ -465,10 +473,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: c97defd418eef4ec88c0d1652cdce84b9f7b63dd7198e266d06ac1710d527067
+      sha256: "350a11abd2d1d97e0cc7a28a81b781c08002aa2864d9e3f192ca0ffa18b06ed3"
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.8"
+    version: "5.0.9"
   xdg_directories:
     dependency: transitive
     description:

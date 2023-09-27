@@ -46,7 +46,7 @@ dependencies:
   flutter_svg: ^2.0.7
   google_fonts: ^6.1.0
   get_it: ^7.6.4
-
+  horizontal_card_pager: ^1.1.1
 
 dev_dependencies:
   flutter_test:
@@ -74,6 +74,10 @@ flutter:
   assets:
       -  assets/images/onboarding.png
       -  assets/images/rightArrow.png
+      -  assets/images/auth.png
+      -  assets/images/authenticate.png
+      -  assets/images/dark.svg
+      -  assets/images/account.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
