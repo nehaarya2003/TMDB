@@ -1,29 +1,15 @@
 part of 'auth_bloc.dart';
 
-abstract class AuthEvent {}
 
-class SignUpEvent extends AuthEvent {
-  SignUpEvent();
-}
+@freezed
+class AuthEvent with _$AuthEvent {
+  const factory AuthEvent.emailChanged(String emailString) = _EmailChanged;
 
-class SignUpButtonPressedEvent extends SignUpEvent {
-  SignUpButtonPressedEvent();
-}
+  const factory AuthEvent.passwordChanged(String passwordString) =
+  _PasswordChanged;
 
-class SignUpEmailChangedEvent extends SignUpEvent {
-  SignUpEmailChangedEvent({required this.email});
+  const factory AuthEvent.obscurePasswordToggled() =
+  _ObscurePasswordToggled;
 
-  final String email;
-
-  @override
-  List<Object> get props => [email];
-}
-
-class SignUpPasswordChangedEvent extends SignUpEvent {
-  SignUpPasswordChangedEvent({required this.password});
-
-  final String password;
-
-  @override
-  List<Object> get props => [password];
+  const factory AuthEvent.loginSubmitted() = _LoginSubmitted;
 }

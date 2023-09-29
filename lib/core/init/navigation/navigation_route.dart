@@ -22,7 +22,7 @@ final GoRouter navigationRouter = GoRouter(
           name: 'auth',
           path: 'auth',
           builder: (BuildContext context, GoRouterState state) {
-            return AuthView();
+            return const AuthView();
           },
         ),
         GoRoute(

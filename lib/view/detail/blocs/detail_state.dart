@@ -1,8 +1,17 @@
 part of 'detail_bloc.dart';
 
 
-class DetailState {}
+@freezed
+class DetailState with _$DetailState {
+  const factory DetailState({
+    required String movieID,
+    @Default(false) bool isLoading,
+    @Default(false) bool showErrorMessage,
+    Either<MovieDetailFailure, Unit>? authFailureOrSuccess,
+  }) = _ContentState;
 
-class ADetailState extends DetailState {
-  ADetailState();
+  factory DetailState.initial() => const DetailState(
+    movieID: '',
+  );
 }
+

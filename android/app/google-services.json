@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "340203052281",
+    "project_id": "whatsappreader",
+    "storage_bucket": "whatsappreader.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340203052281:android:5c83d3fca1c02e79705628",
+        "android_client_info": {
+          "package_name": "com.example.sample"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwCthgV8zoldTu8SvWQ1QB1x3zKjGQMqg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

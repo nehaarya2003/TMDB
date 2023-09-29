@@ -23,6 +23,7 @@ abstract class ICoreDioNullSafety {
         required BaseModel<T> parseModel,
         dynamic data,
         Map<String, Object>? queryParameters,
+        Map<String, dynamic>? headers,
         void Function(int, int)? onReceiveProgress,
       });
 }

@@ -17,7 +17,7 @@ class CoreDio with DioMixin implements Dio, ICoreDioNullSafety {
   CoreDio(this.options) {
     options = options;
     interceptors.add(InterceptorsWrapper());
-    httpClientAdapter = DefaultHttpClientAdapter();
+    httpClientAdapter = IOHttpClientAdapter();
   }
   @override
   final BaseOptions options;
@@ -28,6 +28,7 @@ class CoreDio with DioMixin implements Dio, ICoreDioNullSafety {
         required HttpTypes type,
         required BaseModel<T> parseModel,
         dynamic data,
+        Map<String, dynamic>? headers,
         Map<String, dynamic>? queryParameters,
         void Function(int, int)? onReceiveProgress,
       }) async {

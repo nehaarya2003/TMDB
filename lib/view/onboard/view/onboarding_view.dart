@@ -218,7 +218,7 @@ class LetsGoWidget extends StatelessWidget {
       height: 40,
       width: 120,
       child: ElevatedButton(
-        onPressed: () => (context.goNamed('auth')),
+        onPressed: () => (context.goNamed('content')),
         style: ElevatedButton.styleFrom(
             backgroundColor: ColorSchemeLight.buttonBackground),
         // This is what you need!

@@ -1,8 +1,10 @@
 part of 'content_bloc.dart';
 
-abstract class ContentEvent {}
+@freezed
+class ContentEvent with _$ContentEvent {
+  const factory ContentEvent.authenticateApp() = _AuthenticateApp;
 
-class ContentSuccessEvent extends ContentEvent {
-  ContentSuccessEvent();
+  const factory ContentEvent.getFavList() = _GetFavList;
+
+  const factory ContentEvent.addToFav() = _AddToFav;
 }
-

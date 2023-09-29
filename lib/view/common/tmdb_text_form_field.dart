@@ -6,8 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../auth/blocs/auth_bloc.dart';
 
 class TmdbTextFormField extends StatelessWidget{
-  const TmdbTextFormField({super.key,required this.hint,required this.formatters});
+  const TmdbTextFormField({super.key,required this.controller,required this.hint,required this.formatters});
   final String hint;
+  final TextEditingController controller;
   final List<TextInputFormatter> formatters;
   @override
   Widget build(BuildContext context) {
@@ -15,11 +16,16 @@ class TmdbTextFormField extends StatelessWidget{
       width: context.sizes.width *0.7,
       child: TextFormField(
         inputFormatters: formatters,
+        controller: controller,
         onChanged: ((value) {
-          context
-              .read<AuthBloc>()
-              .add(SignUpPasswordChangedEvent(password: value));
+
         }),
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please enter some text';
+          }
+          return null;
+        },
         obscureText: true,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.all(12),
