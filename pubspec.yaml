@@ -60,6 +60,7 @@ dependencies:
   flutter_secure_storage: ^9.0.0
   vexana: ^3.5.4
   json_serializable: ^6.7.1
+  json_annotation: ^4.8.1
 
 
 dev_dependencies:

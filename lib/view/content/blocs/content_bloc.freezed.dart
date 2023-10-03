@@ -19,44 +19,44 @@ mixin _$ContentEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() authenticateApp,
-    required TResult Function() getFavList,
     required TResult Function() addToFav,
+    required TResult Function(int index) indexChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authenticateApp,
-    TResult? Function()? getFavList,
     TResult? Function()? addToFav,
+    TResult? Function(int index)? indexChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticateApp,
-    TResult Function()? getFavList,
     TResult Function()? addToFav,
+    TResult Function(int index)? indexChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AuthenticateApp value) authenticateApp,
-    required TResult Function(_GetFavList value) getFavList,
     required TResult Function(_AddToFav value) addToFav,
+    required TResult Function(_IndexChanged value) indexChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthenticateApp value)? authenticateApp,
-    TResult? Function(_GetFavList value)? getFavList,
     TResult? Function(_AddToFav value)? addToFav,
+    TResult? Function(_IndexChanged value)? indexChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthenticateApp value)? authenticateApp,
-    TResult Function(_GetFavList value)? getFavList,
     TResult Function(_AddToFav value)? addToFav,
+    TResult Function(_IndexChanged value)? indexChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,8 +119,8 @@ class _$AuthenticateAppImpl implements _AuthenticateApp {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() authenticateApp,
-    required TResult Function() getFavList,
     required TResult Function() addToFav,
+    required TResult Function(int index) indexChanged,
   }) {
     return authenticateApp();
   }
@@ -129,8 +129,8 @@ class _$AuthenticateAppImpl implements _AuthenticateApp {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authenticateApp,
-    TResult? Function()? getFavList,
     TResult? Function()? addToFav,
+    TResult? Function(int index)? indexChanged,
   }) {
     return authenticateApp?.call();
   }
@@ -139,8 +139,8 @@ class _$AuthenticateAppImpl implements _AuthenticateApp {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticateApp,
-    TResult Function()? getFavList,
     TResult Function()? addToFav,
+    TResult Function(int index)? indexChanged,
     required TResult orElse(),
   }) {
     if (authenticateApp != null) {
@@ -153,8 +153,8 @@ class _$AuthenticateAppImpl implements _AuthenticateApp {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AuthenticateApp value) authenticateApp,
-    required TResult Function(_GetFavList value) getFavList,
     required TResult Function(_AddToFav value) addToFav,
+    required TResult Function(_IndexChanged value) indexChanged,
   }) {
     return authenticateApp(this);
   }
@@ -163,8 +163,8 @@ class _$AuthenticateAppImpl implements _AuthenticateApp {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthenticateApp value)? authenticateApp,
-    TResult? Function(_GetFavList value)? getFavList,
     TResult? Function(_AddToFav value)? addToFav,
+    TResult? Function(_IndexChanged value)? indexChanged,
   }) {
     return authenticateApp?.call(this);
   }
@@ -173,8 +173,8 @@ class _$AuthenticateAppImpl implements _AuthenticateApp {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthenticateApp value)? authenticateApp,
-    TResult Function(_GetFavList value)? getFavList,
     TResult Function(_AddToFav value)? addToFav,
+    TResult Function(_IndexChanged value)? indexChanged,
     required TResult orElse(),
   }) {
     if (authenticateApp != null) {
@@ -186,114 +186,6 @@ class _$AuthenticateAppImpl implements _AuthenticateApp {
 
 abstract class _AuthenticateApp implements ContentEvent {
   const factory _AuthenticateApp() = _$AuthenticateAppImpl;
-}
-
-/// @nodoc
-abstract class _$$GetFavListImplCopyWith<$Res> {
-  factory _$$GetFavListImplCopyWith(
-          _$GetFavListImpl value, $Res Function(_$GetFavListImpl) then) =
-      __$$GetFavListImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$GetFavListImplCopyWithImpl<$Res>
-    extends _$ContentEventCopyWithImpl<$Res, _$GetFavListImpl>
-    implements _$$GetFavListImplCopyWith<$Res> {
-  __$$GetFavListImplCopyWithImpl(
-      _$GetFavListImpl _value, $Res Function(_$GetFavListImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$GetFavListImpl implements _GetFavList {
-  const _$GetFavListImpl();
-
-  @override
-  String toString() {
-    return 'ContentEvent.getFavList()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetFavListImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() authenticateApp,
-    required TResult Function() getFavList,
-    required TResult Function() addToFav,
-  }) {
-    return getFavList();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? authenticateApp,
-    TResult? Function()? getFavList,
-    TResult? Function()? addToFav,
-  }) {
-    return getFavList?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? authenticateApp,
-    TResult Function()? getFavList,
-    TResult Function()? addToFav,
-    required TResult orElse(),
-  }) {
-    if (getFavList != null) {
-      return getFavList();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AuthenticateApp value) authenticateApp,
-    required TResult Function(_GetFavList value) getFavList,
-    required TResult Function(_AddToFav value) addToFav,
-  }) {
-    return getFavList(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AuthenticateApp value)? authenticateApp,
-    TResult? Function(_GetFavList value)? getFavList,
-    TResult? Function(_AddToFav value)? addToFav,
-  }) {
-    return getFavList?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AuthenticateApp value)? authenticateApp,
-    TResult Function(_GetFavList value)? getFavList,
-    TResult Function(_AddToFav value)? addToFav,
-    required TResult orElse(),
-  }) {
-    if (getFavList != null) {
-      return getFavList(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _GetFavList implements ContentEvent {
-  const factory _GetFavList() = _$GetFavListImpl;
 }
 
 /// @nodoc
@@ -335,8 +227,8 @@ class _$AddToFavImpl implements _AddToFav {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() authenticateApp,
-    required TResult Function() getFavList,
     required TResult Function() addToFav,
+    required TResult Function(int index) indexChanged,
   }) {
     return addToFav();
   }
@@ -345,8 +237,8 @@ class _$AddToFavImpl implements _AddToFav {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authenticateApp,
-    TResult? Function()? getFavList,
     TResult? Function()? addToFav,
+    TResult? Function(int index)? indexChanged,
   }) {
     return addToFav?.call();
   }
@@ -355,8 +247,8 @@ class _$AddToFavImpl implements _AddToFav {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticateApp,
-    TResult Function()? getFavList,
     TResult Function()? addToFav,
+    TResult Function(int index)? indexChanged,
     required TResult orElse(),
   }) {
     if (addToFav != null) {
@@ -369,8 +261,8 @@ class _$AddToFavImpl implements _AddToFav {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AuthenticateApp value) authenticateApp,
-    required TResult Function(_GetFavList value) getFavList,
     required TResult Function(_AddToFav value) addToFav,
+    required TResult Function(_IndexChanged value) indexChanged,
   }) {
     return addToFav(this);
   }
@@ -379,8 +271,8 @@ class _$AddToFavImpl implements _AddToFav {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthenticateApp value)? authenticateApp,
-    TResult? Function(_GetFavList value)? getFavList,
     TResult? Function(_AddToFav value)? addToFav,
+    TResult? Function(_IndexChanged value)? indexChanged,
   }) {
     return addToFav?.call(this);
   }
@@ -389,8 +281,8 @@ class _$AddToFavImpl implements _AddToFav {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthenticateApp value)? authenticateApp,
-    TResult Function(_GetFavList value)? getFavList,
     TResult Function(_AddToFav value)? addToFav,
+    TResult Function(_IndexChanged value)? indexChanged,
     required TResult orElse(),
   }) {
     if (addToFav != null) {
@@ -405,10 +297,152 @@ abstract class _AddToFav implements ContentEvent {
 }
 
 /// @nodoc
+abstract class _$$IndexChangedImplCopyWith<$Res> {
+  factory _$$IndexChangedImplCopyWith(
+          _$IndexChangedImpl value, $Res Function(_$IndexChangedImpl) then) =
+      __$$IndexChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int index});
+}
+
+/// @nodoc
+class __$$IndexChangedImplCopyWithImpl<$Res>
+    extends _$ContentEventCopyWithImpl<$Res, _$IndexChangedImpl>
+    implements _$$IndexChangedImplCopyWith<$Res> {
+  __$$IndexChangedImplCopyWithImpl(
+      _$IndexChangedImpl _value, $Res Function(_$IndexChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = null,
+  }) {
+    return _then(_$IndexChangedImpl(
+      null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$IndexChangedImpl implements _IndexChanged {
+  const _$IndexChangedImpl(this.index);
+
+  @override
+  final int index;
+
+  @override
+  String toString() {
+    return 'ContentEvent.indexChanged(index: $index)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$IndexChangedImpl &&
+            (identical(other.index, index) || other.index == index));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, index);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$IndexChangedImplCopyWith<_$IndexChangedImpl> get copyWith =>
+      __$$IndexChangedImplCopyWithImpl<_$IndexChangedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() authenticateApp,
+    required TResult Function() addToFav,
+    required TResult Function(int index) indexChanged,
+  }) {
+    return indexChanged(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? authenticateApp,
+    TResult? Function()? addToFav,
+    TResult? Function(int index)? indexChanged,
+  }) {
+    return indexChanged?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? authenticateApp,
+    TResult Function()? addToFav,
+    TResult Function(int index)? indexChanged,
+    required TResult orElse(),
+  }) {
+    if (indexChanged != null) {
+      return indexChanged(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AuthenticateApp value) authenticateApp,
+    required TResult Function(_AddToFav value) addToFav,
+    required TResult Function(_IndexChanged value) indexChanged,
+  }) {
+    return indexChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AuthenticateApp value)? authenticateApp,
+    TResult? Function(_AddToFav value)? addToFav,
+    TResult? Function(_IndexChanged value)? indexChanged,
+  }) {
+    return indexChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AuthenticateApp value)? authenticateApp,
+    TResult Function(_AddToFav value)? addToFav,
+    TResult Function(_IndexChanged value)? indexChanged,
+    required TResult orElse(),
+  }) {
+    if (indexChanged != null) {
+      return indexChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _IndexChanged implements ContentEvent {
+  const factory _IndexChanged(final int index) = _$IndexChangedImpl;
+
+  int get index;
+  @JsonKey(ignore: true)
+  _$$IndexChangedImplCopyWith<_$IndexChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$ContentState {
   String get token => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  int get index => throw _privateConstructorUsedError;
   bool get showErrorMessage => throw _privateConstructorUsedError;
+  MovieListResponseModel? get movieResponse =>
+      throw _privateConstructorUsedError;
   Either<MovieAuthFailure, Unit>? get authFailureOrSuccess =>
       throw _privateConstructorUsedError;
 
@@ -426,8 +460,12 @@ abstract class $ContentStateCopyWith<$Res> {
   $Res call(
       {String token,
       bool isLoading,
+      int index,
       bool showErrorMessage,
+      MovieListResponseModel? movieResponse,
       Either<MovieAuthFailure, Unit>? authFailureOrSuccess});
+
+  $MovieListResponseModelCopyWith<$Res>? get movieResponse;
 }
 
 /// @nodoc
@@ -445,7 +483,9 @@ class _$ContentStateCopyWithImpl<$Res, $Val extends ContentState>
   $Res call({
     Object? token = null,
     Object? isLoading = null,
+    Object? index = null,
     Object? showErrorMessage = null,
+    Object? movieResponse = freezed,
     Object? authFailureOrSuccess = freezed,
   }) {
     return _then(_value.copyWith(
@@ -457,15 +497,36 @@ class _$ContentStateCopyWithImpl<$Res, $Val extends ContentState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
       showErrorMessage: null == showErrorMessage
           ? _value.showErrorMessage
           : showErrorMessage // ignore: cast_nullable_to_non_nullable
               as bool,
+      movieResponse: freezed == movieResponse
+          ? _value.movieResponse
+          : movieResponse // ignore: cast_nullable_to_non_nullable
+              as MovieListResponseModel?,
       authFailureOrSuccess: freezed == authFailureOrSuccess
           ? _value.authFailureOrSuccess
           : authFailureOrSuccess // ignore: cast_nullable_to_non_nullable
               as Either<MovieAuthFailure, Unit>?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MovieListResponseModelCopyWith<$Res>? get movieResponse {
+    if (_value.movieResponse == null) {
+      return null;
+    }
+
+    return $MovieListResponseModelCopyWith<$Res>(_value.movieResponse!,
+        (value) {
+      return _then(_value.copyWith(movieResponse: value) as $Val);
+    });
   }
 }
 
@@ -480,8 +541,13 @@ abstract class _$$ContentStateImplCopyWith<$Res>
   $Res call(
       {String token,
       bool isLoading,
+      int index,
       bool showErrorMessage,
+      MovieListResponseModel? movieResponse,
       Either<MovieAuthFailure, Unit>? authFailureOrSuccess});
+
+  @override
+  $MovieListResponseModelCopyWith<$Res>? get movieResponse;
 }
 
 /// @nodoc
@@ -497,7 +563,9 @@ class __$$ContentStateImplCopyWithImpl<$Res>
   $Res call({
     Object? token = null,
     Object? isLoading = null,
+    Object? index = null,
     Object? showErrorMessage = null,
+    Object? movieResponse = freezed,
     Object? authFailureOrSuccess = freezed,
   }) {
     return _then(_$ContentStateImpl(
@@ -509,10 +577,18 @@ class __$$ContentStateImplCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
       showErrorMessage: null == showErrorMessage
           ? _value.showErrorMessage
           : showErrorMessage // ignore: cast_nullable_to_non_nullable
               as bool,
+      movieResponse: freezed == movieResponse
+          ? _value.movieResponse
+          : movieResponse // ignore: cast_nullable_to_non_nullable
+              as MovieListResponseModel?,
       authFailureOrSuccess: freezed == authFailureOrSuccess
           ? _value.authFailureOrSuccess
           : authFailureOrSuccess // ignore: cast_nullable_to_non_nullable
@@ -527,7 +603,9 @@ class _$ContentStateImpl implements _ContentState {
   const _$ContentStateImpl(
       {required this.token,
       this.isLoading = false,
+      this.index = 0,
       this.showErrorMessage = false,
+      this.movieResponse,
       this.authFailureOrSuccess});
 
   @override
@@ -537,13 +615,18 @@ class _$ContentStateImpl implements _ContentState {
   final bool isLoading;
   @override
   @JsonKey()
+  final int index;
+  @override
+  @JsonKey()
   final bool showErrorMessage;
+  @override
+  final MovieListResponseModel? movieResponse;
   @override
   final Either<MovieAuthFailure, Unit>? authFailureOrSuccess;
 
   @override
   String toString() {
-    return 'ContentState(token: $token, isLoading: $isLoading, showErrorMessage: $showErrorMessage, authFailureOrSuccess: $authFailureOrSuccess)';
+    return 'ContentState(token: $token, isLoading: $isLoading, index: $index, showErrorMessage: $showErrorMessage, movieResponse: $movieResponse, authFailureOrSuccess: $authFailureOrSuccess)';
   }
 
   @override
@@ -554,15 +637,18 @@ class _$ContentStateImpl implements _ContentState {
             (identical(other.token, token) || other.token == token) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.index, index) || other.index == index) &&
             (identical(other.showErrorMessage, showErrorMessage) ||
                 other.showErrorMessage == showErrorMessage) &&
+            (identical(other.movieResponse, movieResponse) ||
+                other.movieResponse == movieResponse) &&
             (identical(other.authFailureOrSuccess, authFailureOrSuccess) ||
                 other.authFailureOrSuccess == authFailureOrSuccess));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, token, isLoading, showErrorMessage, authFailureOrSuccess);
+  int get hashCode => Object.hash(runtimeType, token, isLoading, index,
+      showErrorMessage, movieResponse, authFailureOrSuccess);
 
   @JsonKey(ignore: true)
   @override
@@ -575,7 +661,9 @@ abstract class _ContentState implements ContentState {
   const factory _ContentState(
           {required final String token,
           final bool isLoading,
+          final int index,
           final bool showErrorMessage,
+          final MovieListResponseModel? movieResponse,
           final Either<MovieAuthFailure, Unit>? authFailureOrSuccess}) =
       _$ContentStateImpl;
 
@@ -584,7 +672,11 @@ abstract class _ContentState implements ContentState {
   @override
   bool get isLoading;
   @override
+  int get index;
+  @override
   bool get showErrorMessage;
+  @override
+  MovieListResponseModel? get movieResponse;
   @override
   Either<MovieAuthFailure, Unit>? get authFailureOrSuccess;
   @override

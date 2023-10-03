@@ -11,7 +11,7 @@ class DetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => DetailBloc()..add(DetailEvent.getMovieDetail()),
+      create: (_) => DetailBloc()..add(const DetailEvent.getMovieDetail("2323")),
       child: _Details(),
     );
   }

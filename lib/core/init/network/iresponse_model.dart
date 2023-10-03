@@ -15,3 +15,4 @@ class ResponseModel<T> extends IResponseModel<T> {
   @override
   final IErrorModel? error;
 }
+

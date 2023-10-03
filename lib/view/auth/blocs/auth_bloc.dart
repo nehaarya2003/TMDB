@@ -75,6 +75,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthenticationState> {
       final res = await authRepository.loginUser(
           state.emailAddress.value.getOrElse(() => ""),
           state.password.value.getOrElse(() => ""));
+
+    //  list.map((e) => User.fromJson(e)).toList();
+
+      
       if (res) {
         emit(
             getSuccessState(isEmailValid && isPasswordValid && res)

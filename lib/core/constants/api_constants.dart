@@ -5,7 +5,7 @@ extension NetwrokRoutesString on NetworkRoutes {
   String get rawValue {
     switch (this) {
       case NetworkRoutes.DISC_MOVIE:
-        return '3/discover/movie';
+        return '/3/discover/movie';
       case NetworkRoutes.AUTH:
         return '/3/authentication';
       case NetworkRoutes.MOVIE_DETAIL:

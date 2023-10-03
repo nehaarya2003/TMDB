@@ -1,24 +1,19 @@
-
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:sample/core/base/model/base_model.dart';
 
-import '../../../../core/base/model/base_model.dart';
+
 part 'movie_reponse_model.g.dart';
 
-@JsonSerializable()
-class MovieResponseModel extends BaseModel<MovieResponseModel> {
-  MovieResponseModel({ this.poster_path,  this.original_title, this.overview});
+part 'movie_reponse_model.freezed.dart';
 
-  final String? poster_path;
-  final String? original_title;
-  final String? overview;
+@freezed
+class MovieResponseModel extends BaseModel<MovieResponseModel> with _$MovieResponseModel {
+  factory MovieResponseModel(
+      {String? poster_path,
+      String? original_title,
+      String? overview}) = _MovieResponseModel;
 
-  @override
-  MovieResponseModel fromJson(Map<String, Object?> json) {
-    return _$MovieResponseModelFromJson(json);
-  }
+  factory MovieResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$MovieResponseModelFromJson(json);
 
-  @override
-  Map<String, Object?> toJson() {
-    return _$MovieResponseModelToJson(this);
-  }
 }

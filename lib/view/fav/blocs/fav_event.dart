@@ -1,8 +1,6 @@
 part of 'fav_bloc.dart';
 
-abstract class FavEvent {}
-
-class AFavEvent extends FavEvent {
-  AFavEvent();
+@freezed
+class FavEvent with _$FavEvent {
+  const factory FavEvent.getFavList() = _GetFavList;
 }
-

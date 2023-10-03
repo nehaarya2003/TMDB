@@ -9,13 +9,15 @@ import 'icore_dio.dart';
 class NetworkManager {
   NetworkManager() {
     coreDio = CoreDio(baseOptions);
+    coreDioS = CoreDio(baseOptions);
   }
 
   final baseOptions = BaseOptions(
-      baseUrl: 'https://api.themoviedb.org/',
+      baseUrl: 'https://api.themoviedb.org',
       headers: {
         'accept': 'application/json',
         'Authorization': 'Bearer ${AppConstants.token}'
       });
-  ICoreDioNullSafety? coreDio;
+  ICoreDioNullSafetyCopy? coreDio;
+  ICoreDioNullSafety? coreDioS;
 }

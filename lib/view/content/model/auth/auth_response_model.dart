@@ -1,26 +1,18 @@
-import 'dart:ffi';
-
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../core/base/model/base_model.dart';
 
 part 'auth_response_model.g.dart';
+part 'auth_response_model.freezed.dart';
 
-@JsonSerializable()
-class AuthResponseModel extends BaseModel<AuthResponseModel> {
-  AuthResponseModel({ this.status_code,  this.status_message, this.success});
 
-  final String? status_message;
-  final int? status_code;
-  final bool? success;
+@freezed
+class AuthResponseModel with _$AuthResponseModel {
+  const factory AuthResponseModel(
+      {int? status_code,
+      String? status_message,
+      bool? success}) = _AuthResponseModel;
 
-  @override
-  AuthResponseModel fromJson(Map<String, Object?> json) {
-    return _$AuthResponseModelFromJson(json);
-  }
-
-  @override
-  Map<String, Object?> toJson() {
-    return _$AuthResponseModelToJson(this);
-  }
+  factory AuthResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$AuthResponseModelFromJson(json);
 }

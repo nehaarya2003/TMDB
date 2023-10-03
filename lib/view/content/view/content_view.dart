@@ -5,11 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/constants/app_contants.dart';
 import '../blocs/content_bloc.dart';
 
 class ContentView extends StatelessWidget {
   const ContentView({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +21,6 @@ class ContentView extends StatelessWidget {
 }
 
 class _Content extends StatelessWidget {
-
-
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -52,47 +49,76 @@ class _Content extends StatelessWidget {
         ),
         body: BlocBuilder<ContentBloc, ContentState>(
           builder: (context, contentState) {
-            List<String> items = [
-              'assets/images/onboarding.png',
-              'assets/images/onboarding.png',
-              'assets/images/onboarding.png',
-              'assets/images/onboarding.png',
-              'assets/images/onboarding.png',
-              'assets/images/onboarding.png',
-            ];
-
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              child: Column(children: [
-                CarouselSlider(
-                  options: CarouselOptions(
-                    height: 300,
-                    viewportFraction: 0.5,
-                    enlargeCenterPage: true,
+            if (contentState.isLoading == true) {
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: Column(children: [
+                  CarouselSlider.builder(
+                    options: CarouselOptions(
+                      height: 300,
+                      onPageChanged: (index, reason) {
+                        BlocProvider.of<ContentBloc>(context)
+                            .add(ContentEvent.indexChanged(index));
+                      },
+                      viewportFraction: 0.5,
+                      enlargeCenterPage: true,
+                    ),
+                    itemCount: contentState.movieResponse?.results.length,
+                    itemBuilder: (BuildContext context, int itemIndex,
+                            int pageViewIndex) =>
+                        Container(
+                      height: double.infinity,
+                      child: SizedBox(
+                        height: 300,
+                        width: 200,
+                        child: Card(
+                            child: FadeInImage(
+                          image: NetworkImage('https://image.tmdb.org/t/p/w500/${contentState.movieResponse?.results
+                                      .elementAt(itemIndex)
+                                      .poster_path}',
+                              headers: {
+                                'accept': 'application/json',
+                                'Authorization': 'Bearer 65a62eb3d9b8c21b9ff004407bd6d027'
+                              }),
+                          placeholder: AssetImage('assets/images/auth.png'),
+                          fit: BoxFit.cover,
+                        )),
+                      ),
+                    ),
                   ),
-                  items: items
-                      .map((item) => SizedBox(
-                            height: 300,
-                            width: 200,
-                            child: Card(
-                              child: Image.asset(item, fit: BoxFit.cover),
-                            ),
-                          ))
-                      .toList(),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text("Title",
-                    style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurface)),
-                const SizedBox(
-                  height: 12,
-                ),
-                Text("Description",
-                    style: Theme.of(context).textTheme.bodyLarge),
-              ]),
-            );
+
+                  Padding(padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+                  child: Text(
+                      contentState.movieResponse?.results
+                          .elementAt(contentState.index)
+                          .original_title ??
+                          '',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign:TextAlign.center,
+                      style: Theme.of(context)
+                          .textTheme
+                          .displayMedium
+                          ?.copyWith(
+                          color: Theme.of(context).colorScheme.onSurface),
+
+                  ),),
+
+            Padding(padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+            child:
+                  Text(
+                      contentState.movieResponse?.results
+                              .elementAt(contentState.index)
+                              .overview ??
+                          '',
+                      textAlign:TextAlign.justify,
+
+                      style: Theme.of(context).textTheme.bodyLarge),),
+                ]),
+              );
+            }
           },
         ),
         persistentFooterButtons: [

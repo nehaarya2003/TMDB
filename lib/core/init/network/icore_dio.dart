@@ -1,5 +1,8 @@
 
 
+import 'package:dio/dio.dart';
+import 'package:sample/core/init/network/api_result.dart';
+
 import '../../base/model/base_model.dart';
 import '../../enums/http_request_enum.dart';
 import 'iresponse_model.dart';
@@ -26,6 +29,18 @@ abstract class ICoreDioNullSafety {
         Map<String, dynamic>? headers,
         void Function(int, int)? onReceiveProgress,
       });
+}
+
+abstract class ICoreDioNullSafetyCopy {
+  Future<ApiResult<T>> safeCall<T>(String path,
+      T Function(Map<String, dynamic>) mapper,
+      {data,
+        required HttpTypes type,
+        Map<String, dynamic>? queryParameters,
+        Options? options,
+        CancelToken? cancelToken,
+        ProgressCallback? onSendProgress,
+        ProgressCallback? onReceiveProgress});
 }
 
 abstract class ICoreDioFull extends ICoreDio {

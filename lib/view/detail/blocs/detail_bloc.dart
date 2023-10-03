@@ -21,6 +21,9 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
           (event, emit) async {
         await event.when<FutureOr<void>>(
           getMovieDetail: (movieID) => _onGetMovieDetail(emit, movieID),
+          addToFav: (abs) => _onAddToFav(emit, abs),
+          removeFromFav: (we) => _onRemoveFromFav(emit, we),
+
         );
       },
     );
@@ -43,6 +46,34 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
     }
   }
 
+  Future<void> _onAddToFav(Emitter<DetailState> emit, String token) async {
+    final isTokenValid = state.movieID.isNotEmpty;
+
+    if (isTokenValid) {
+      final res = await authRepository.getFavList();
+
+      if (res == true) {
+        final movieReponse = await authRepository.discoverMovies();
+        emit(getSuccessState(movieReponse != null));
+      }
+    } else {
+      emit(getFailureState(true));
+    }
+  }
+  Future<void> _onRemoveFromFav(Emitter<DetailState> emit, String token) async {
+    final isTokenValid = state.movieID.isNotEmpty;
+
+    if (isTokenValid) {
+      final res = await authRepository.getFavList();
+
+      if (res == true) {
+        final movieReponse = await authRepository.discoverMovies();
+        emit(getSuccessState(movieReponse != null));
+      }
+    } else {
+      emit(getFailureState(true));
+    }
+  }
   DetailState getSuccessState(bool condition) {
     return state.copyWith(
       isLoading: false,
