@@ -1,7 +1,13 @@
 part of 'setting_bloc.dart';
 
-class SettingState {}
+@freezed
+class SettingState with _$SettingState {
+  const factory SettingState({
+    @Default(false) bool isDarkMode,
+    @Default("Something went wrong") String message,
+  }) = _SettingState;
 
-class SettingSuccessState extends SettingState {
-  SettingSuccessState();
+  factory SettingState.initial() => const SettingState(
+        isDarkMode: false,
+      );
 }

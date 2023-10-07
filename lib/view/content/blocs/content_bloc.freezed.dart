@@ -19,21 +19,18 @@ mixin _$ContentEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() authenticateApp,
-    required TResult Function() addToFav,
     required TResult Function(int index) indexChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authenticateApp,
-    TResult? Function()? addToFav,
     TResult? Function(int index)? indexChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticateApp,
-    TResult Function()? addToFav,
     TResult Function(int index)? indexChanged,
     required TResult orElse(),
   }) =>
@@ -41,21 +38,18 @@ mixin _$ContentEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AuthenticateApp value) authenticateApp,
-    required TResult Function(_AddToFav value) addToFav,
     required TResult Function(_IndexChanged value) indexChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthenticateApp value)? authenticateApp,
-    TResult? Function(_AddToFav value)? addToFav,
     TResult? Function(_IndexChanged value)? indexChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthenticateApp value)? authenticateApp,
-    TResult Function(_AddToFav value)? addToFav,
     TResult Function(_IndexChanged value)? indexChanged,
     required TResult orElse(),
   }) =>
@@ -119,7 +113,6 @@ class _$AuthenticateAppImpl implements _AuthenticateApp {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() authenticateApp,
-    required TResult Function() addToFav,
     required TResult Function(int index) indexChanged,
   }) {
     return authenticateApp();
@@ -129,7 +122,6 @@ class _$AuthenticateAppImpl implements _AuthenticateApp {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authenticateApp,
-    TResult? Function()? addToFav,
     TResult? Function(int index)? indexChanged,
   }) {
     return authenticateApp?.call();
@@ -139,7 +131,6 @@ class _$AuthenticateAppImpl implements _AuthenticateApp {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticateApp,
-    TResult Function()? addToFav,
     TResult Function(int index)? indexChanged,
     required TResult orElse(),
   }) {
@@ -153,7 +144,6 @@ class _$AuthenticateAppImpl implements _AuthenticateApp {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AuthenticateApp value) authenticateApp,
-    required TResult Function(_AddToFav value) addToFav,
     required TResult Function(_IndexChanged value) indexChanged,
   }) {
     return authenticateApp(this);
@@ -163,7 +153,6 @@ class _$AuthenticateAppImpl implements _AuthenticateApp {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthenticateApp value)? authenticateApp,
-    TResult? Function(_AddToFav value)? addToFav,
     TResult? Function(_IndexChanged value)? indexChanged,
   }) {
     return authenticateApp?.call(this);
@@ -173,7 +162,6 @@ class _$AuthenticateAppImpl implements _AuthenticateApp {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthenticateApp value)? authenticateApp,
-    TResult Function(_AddToFav value)? addToFav,
     TResult Function(_IndexChanged value)? indexChanged,
     required TResult orElse(),
   }) {
@@ -186,114 +174,6 @@ class _$AuthenticateAppImpl implements _AuthenticateApp {
 
 abstract class _AuthenticateApp implements ContentEvent {
   const factory _AuthenticateApp() = _$AuthenticateAppImpl;
-}
-
-/// @nodoc
-abstract class _$$AddToFavImplCopyWith<$Res> {
-  factory _$$AddToFavImplCopyWith(
-          _$AddToFavImpl value, $Res Function(_$AddToFavImpl) then) =
-      __$$AddToFavImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$AddToFavImplCopyWithImpl<$Res>
-    extends _$ContentEventCopyWithImpl<$Res, _$AddToFavImpl>
-    implements _$$AddToFavImplCopyWith<$Res> {
-  __$$AddToFavImplCopyWithImpl(
-      _$AddToFavImpl _value, $Res Function(_$AddToFavImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$AddToFavImpl implements _AddToFav {
-  const _$AddToFavImpl();
-
-  @override
-  String toString() {
-    return 'ContentEvent.addToFav()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AddToFavImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() authenticateApp,
-    required TResult Function() addToFav,
-    required TResult Function(int index) indexChanged,
-  }) {
-    return addToFav();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? authenticateApp,
-    TResult? Function()? addToFav,
-    TResult? Function(int index)? indexChanged,
-  }) {
-    return addToFav?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? authenticateApp,
-    TResult Function()? addToFav,
-    TResult Function(int index)? indexChanged,
-    required TResult orElse(),
-  }) {
-    if (addToFav != null) {
-      return addToFav();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AuthenticateApp value) authenticateApp,
-    required TResult Function(_AddToFav value) addToFav,
-    required TResult Function(_IndexChanged value) indexChanged,
-  }) {
-    return addToFav(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AuthenticateApp value)? authenticateApp,
-    TResult? Function(_AddToFav value)? addToFav,
-    TResult? Function(_IndexChanged value)? indexChanged,
-  }) {
-    return addToFav?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AuthenticateApp value)? authenticateApp,
-    TResult Function(_AddToFav value)? addToFav,
-    TResult Function(_IndexChanged value)? indexChanged,
-    required TResult orElse(),
-  }) {
-    if (addToFav != null) {
-      return addToFav(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _AddToFav implements ContentEvent {
-  const factory _AddToFav() = _$AddToFavImpl;
 }
 
 /// @nodoc
@@ -361,7 +241,6 @@ class _$IndexChangedImpl implements _IndexChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() authenticateApp,
-    required TResult Function() addToFav,
     required TResult Function(int index) indexChanged,
   }) {
     return indexChanged(index);
@@ -371,7 +250,6 @@ class _$IndexChangedImpl implements _IndexChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authenticateApp,
-    TResult? Function()? addToFav,
     TResult? Function(int index)? indexChanged,
   }) {
     return indexChanged?.call(index);
@@ -381,7 +259,6 @@ class _$IndexChangedImpl implements _IndexChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticateApp,
-    TResult Function()? addToFav,
     TResult Function(int index)? indexChanged,
     required TResult orElse(),
   }) {
@@ -395,7 +272,6 @@ class _$IndexChangedImpl implements _IndexChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AuthenticateApp value) authenticateApp,
-    required TResult Function(_AddToFav value) addToFav,
     required TResult Function(_IndexChanged value) indexChanged,
   }) {
     return indexChanged(this);
@@ -405,7 +281,6 @@ class _$IndexChangedImpl implements _IndexChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthenticateApp value)? authenticateApp,
-    TResult? Function(_AddToFav value)? addToFav,
     TResult? Function(_IndexChanged value)? indexChanged,
   }) {
     return indexChanged?.call(this);
@@ -415,7 +290,6 @@ class _$IndexChangedImpl implements _IndexChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthenticateApp value)? authenticateApp,
-    TResult Function(_AddToFav value)? addToFav,
     TResult Function(_IndexChanged value)? indexChanged,
     required TResult orElse(),
   }) {

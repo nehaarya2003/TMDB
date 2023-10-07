@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sample/core/init/network/api_result.dart';
+import 'package:sample/view/content/model/auth/auth_response_model.dart';
 
 import '../../../core/di/injector_provider.dart';
 import '../../../data/repository/auth/auth_repository.dart';
@@ -23,7 +24,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthenticationState> {
 
   AuthBloc() : super(AuthenticationState.initial()) {
     on<AuthEvent>(
-          (event, emit) async {
+      (event, emit) async {
         await event.when<FutureOr<void>>(
           emailChanged: (emailString) => _onEmailChanged(emit, emailString),
           passwordChanged: (passwordString) =>
@@ -44,8 +45,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthenticationState> {
     );
   }
 
-  void _onPasswordChanged(Emitter<AuthenticationState> emit,
-      String passwordString) {
+  void _onPasswordChanged(
+      Emitter<AuthenticationState> emit, String passwordString) {
     emit(
       state.copyWith(
         password: Password(passwordString),
@@ -70,64 +71,46 @@ class AuthBloc extends Bloc<AuthEvent, AuthenticationState> {
         ),
       );
 
-      // Perform network request to get a token.
-
       final res = await authRepository.loginUser(
           state.emailAddress.value.getOrElse(() => ""),
           state.password.value.getOrElse(() => ""));
 
-    //  list.map((e) => User.fromJson(e)).toList();
-
-      
-      if (res) {
-        emit(
-            getSuccessState(isEmailValid && isPasswordValid && res)
-        );
+      if (res.success == true) {
+        emit(getSuccessState(isEmailValid && isPasswordValid,
+            response: Right(res)));
       } else {
-        final createRes = _onCreateUserSubmitted(emit);
-        createRes == true ? emit(getSuccessState(true)) : emit(
-            getFailureState(true));
+        final createRes = await _onCreateUserSubmitted(emit);
+        emit(getSuccessState(isEmailValid && isPasswordValid,
+            response: Right(createRes)));
       }
-      // await Future.delayed(const Duration(seconds: 1));
+      emit(getFailureState(isEmailValid && isPasswordValid,
+          response:
+              const Left(AuthFailure.serverError("Something went wrong"))));
     }
-    emit(
-        getFailureState(isEmailValid && isPasswordValid)
-    );
   }
 
-  Future<bool> _onCreateUserSubmitted(Emitter<AuthenticationState> emit) async {
+  Future<AuthResponseModel> _onCreateUserSubmitted(
+      Emitter<AuthenticationState> emit) async {
     return await authRepository.createUser(
         state.emailAddress.value.getOrElse(() => ""),
         state.password.value.getOrElse(() => ""));
   }
 
-  AuthenticationState getSuccessState(bool condition) {
+  AuthenticationState getSuccessState(bool condition,
+      {required Either<AuthFailure, AuthResponseModel> response}) {
     return state.copyWith(
       isSubmitting: false,
       showErrorMessage: false,
-
-// Depending on the response received from the server after loggin in,
-// emit proper authFailureOrSuccess.
-
-// For now we will just see if the email and password were valid or not
-// and accordingly set authFailureOrSuccess' value.
-
-      authFailureOrSuccess: (condition) ? right(unit) : null,
+      authFailureOrSuccess: response,
     );
   }
 
-  AuthenticationState getFailureState(bool condition) {
+  AuthenticationState getFailureState(bool condition,
+      {required Either<AuthFailure, AuthResponseModel> response}) {
     return state.copyWith(
       isSubmitting: false,
       showErrorMessage: true,
-
-// Depending on the response received from the server after loggin in,
-// emit proper authFailureOrSuccess.
-
-// For now we will just see if the email and password were valid or not
-// and accordingly set authFailureOrSuccess' value.
-
-      authFailureOrSuccess: (condition) ? right(unit) : null,
+      authFailureOrSuccess: response,
     );
   }
 }

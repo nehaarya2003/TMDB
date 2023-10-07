@@ -7,10 +7,11 @@ class FavState with _$FavState {
    // required String token,
     @Default(false) bool isLoading,
     @Default(false) bool showErrorMessage,
-    Either<MovieAuthFailure, Unit>? authFailureOrSuccess,
+    Either<MovieAuthFailure, MovieListResponseModel?>? authFailureOrSuccess,
   }) = _FavState;
 
   factory FavState.initial() => const FavState(
+    isLoading: true,
     //token: AppConstants.token,
   );
 }

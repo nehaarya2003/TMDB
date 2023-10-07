@@ -6,5 +6,5 @@ part 'auth_failure.freezed.dart';
 class AuthFailure with _$AuthFailure {
   const factory AuthFailure.invalidEmailAndPasswordCombination() =
   _InvalidEmailAndPasswordCombination;
-  const factory AuthFailure.serverError() = _ServerError;
+  const factory AuthFailure.serverError(String message) = _ServerError;
 }

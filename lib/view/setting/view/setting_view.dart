@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:sample/view/auth/blocs/auth_bloc.dart';
 import 'package:sample/view/common/setting_tuple.dart';
 import 'package:sample/view/setting/blocs/setting_bloc.dart';
 import 'package:sample/view/setting/model/setting_model.dart';
+
+import '../../../core/init/notifier/theme_notifier.dart';
 
 class SettingView extends StatelessWidget {
   const SettingView({super.key});
@@ -12,7 +12,7 @@ class SettingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => SettingBloc(),
+      create: (_) => SettingBloc()..add(const SettingEvent.getDarkMode()),
       child: _Settings(),
     );
   }
@@ -37,12 +37,30 @@ class _Settings extends StatelessWidget {
             builder: (context, settingState) {
               return Column(
                 children: [
-                  SettingTuple(
-                    settingsModel: SettingsModel(
-                        heading: 'Theme',
-                        title: 'Dark Mode',
-                        imagePath: 'assets/images/dark.svg'),
-                  ) ,
+                  Row(
+                    children: [
+                      SettingTuple(
+                        settingsModel: SettingsModel(
+                            heading: 'Theme',
+                            title: 'Dark Mode',
+                            imagePath: 'assets/images/dark.svg'),
+                      ),
+                      Switch(
+                        value: settingState.isDarkMode,
+                        onChanged: (bool newValue) {
+                          context.read<ThemeNotifier>().changeTheme();
+                          context
+                              .read<SettingBloc>()
+                              .add(SettingEvent.setDarkMode(newValue));
+                          context
+                              .read<SettingBloc>()
+                              .add(const SettingEvent.getDarkMode());
+                        },
+                        inactiveThumbColor:
+                            Theme.of(context).colorScheme.outline,
+                      )
+                    ],
+                  ),
                   SettingTuple(
                     settingsModel: SettingsModel(
                         heading: 'Account',

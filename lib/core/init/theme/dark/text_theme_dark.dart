@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sample/core/init/theme/dark/color_scheme_dark.dart';
 
-import 'color_scheme_light.dart';
+class TextThemeDark {
+  TextThemeDark._init();
 
-class TextThemeLight {
-  TextThemeLight._init();
-
-  static final instance = TextThemeLight._init();
+  static final instance = TextThemeDark._init();
 
   TextTheme getTextTheme() {
     return TextTheme(
@@ -60,78 +59,78 @@ class TextThemeLight {
       fontSize: 36,
       fontWeight: FontWeight.w400,
       letterSpacing: 1.5,
-      color: ColorSchemeLight.onPrimary);
+      color: ColorSchemeDark.onPrimary);
   final TextStyle displayLarge = GoogleFonts.roboto(
       fontSize: 57,
       fontWeight: FontWeight.w400,
       letterSpacing: 1,
-      color: ColorSchemeLight.onPrimary);
+      color: ColorSchemeDark.onPrimary);
   final TextStyle displayMedium = GoogleFonts.roboto(
       fontSize: 45,
       fontWeight: FontWeight.w400,
       letterSpacing: 1,
-      color: ColorSchemeLight.onPrimary);
+      color: ColorSchemeDark.onPrimary);
 
   final TextStyle headlineLarge = GoogleFonts.roboto(
       fontSize: 32,
       fontWeight: FontWeight.w400,
       letterSpacing: 1,
-      color: ColorSchemeLight.onSurface);
+      color: ColorSchemeDark.onSurface);
   final TextStyle headlineMedium = GoogleFonts.roboto(
       fontSize: 28,
       fontWeight: FontWeight.w400,
       letterSpacing: 1,
-      color: ColorSchemeLight.onSurface);
+      color: ColorSchemeDark.onSurface);
   final TextStyle headlineSmall = GoogleFonts.roboto(
       fontSize: 24,
       fontWeight: FontWeight.w400,
       letterSpacing: 1,
-      color: ColorSchemeLight.onSurface);
+      color: ColorSchemeDark.onSurface);
 
   final TextStyle titleLarge = GoogleFonts.roboto(
       fontSize: 22,
       fontWeight: FontWeight.w500,
       letterSpacing: 1,
-      color: ColorSchemeLight.onSurface);
+      color: ColorSchemeDark.onSurface);
   final TextStyle titleMedium = GoogleFonts.roboto(
       fontSize: 16,
       fontWeight: FontWeight.w500,
       letterSpacing: 1,
-      color: ColorSchemeLight.onSurface);
+      color: ColorSchemeDark.onSurface);
   final TextStyle titleSmall = GoogleFonts.roboto(
       fontSize: 14,
       fontWeight: FontWeight.w500,
       letterSpacing: 1,
-      color: ColorSchemeLight.onSurface);
+      color: ColorSchemeDark.onSurface);
 
   final TextStyle labelLarge = GoogleFonts.roboto(
       fontSize: 14,
       fontWeight: FontWeight.w500,
       letterSpacing: 1,
-      color: ColorSchemeLight.primary);
+      color: ColorSchemeDark.primary);
   final TextStyle labelMedium = GoogleFonts.roboto(
       fontSize: 12,
       fontWeight: FontWeight.w500,
       letterSpacing: 1,
-      color: ColorSchemeLight.onSurface);
+      color: ColorSchemeDark.onSurface);
   final TextStyle labelSmall = GoogleFonts.roboto(
       fontSize: 11,
       fontWeight: FontWeight.w500,
       letterSpacing: 1,
-      color: ColorSchemeLight.onSurface);
+      color: ColorSchemeDark.onSurface);
   final TextStyle bodyLarge = GoogleFonts.roboto(
       fontSize: 16,
       fontWeight: FontWeight.w500,
       letterSpacing: 1,
-      color: ColorSchemeLight.onSurface);
+      color: ColorSchemeDark.onSurface);
   final TextStyle bodyMedium = GoogleFonts.roboto(
       fontSize: 14,
       fontWeight: FontWeight.w500,
       letterSpacing: 1,
-      color: ColorSchemeLight.onSurface);
+      color: ColorSchemeDark.onSurface);
   final TextStyle bodySmall = GoogleFonts.roboto(
       fontSize: 12,
       fontWeight: FontWeight.w500,
       letterSpacing: 1,
-      color: ColorSchemeLight.onSurface);
+      color: ColorSchemeDark.onSurface);
 }

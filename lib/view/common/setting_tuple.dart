@@ -42,13 +42,6 @@ class SettingTuple extends StatelessWidget {
               ),
             ],
           ),
-          Switch(
-            value: true,
-            onChanged: (bool newValue) {
-              bool valu = newValue;
-            },
-            inactiveThumbColor: Theme.of(context).colorScheme.outline,
-          )
         ],
       ),
     );

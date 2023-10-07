@@ -168,7 +168,7 @@ mixin _$FavState {
 // required String token,
   bool get isLoading => throw _privateConstructorUsedError;
   bool get showErrorMessage => throw _privateConstructorUsedError;
-  Either<MovieAuthFailure, Unit>? get authFailureOrSuccess =>
+  Either<MovieAuthFailure, MovieListResponseModel?>? get authFailureOrSuccess =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -184,7 +184,7 @@ abstract class $FavStateCopyWith<$Res> {
   $Res call(
       {bool isLoading,
       bool showErrorMessage,
-      Either<MovieAuthFailure, Unit>? authFailureOrSuccess});
+      Either<MovieAuthFailure, MovieListResponseModel?>? authFailureOrSuccess});
 }
 
 /// @nodoc
@@ -216,7 +216,7 @@ class _$FavStateCopyWithImpl<$Res, $Val extends FavState>
       authFailureOrSuccess: freezed == authFailureOrSuccess
           ? _value.authFailureOrSuccess
           : authFailureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Either<MovieAuthFailure, Unit>?,
+              as Either<MovieAuthFailure, MovieListResponseModel?>?,
     ) as $Val);
   }
 }
@@ -232,7 +232,7 @@ abstract class _$$FavStateImplCopyWith<$Res>
   $Res call(
       {bool isLoading,
       bool showErrorMessage,
-      Either<MovieAuthFailure, Unit>? authFailureOrSuccess});
+      Either<MovieAuthFailure, MovieListResponseModel?>? authFailureOrSuccess});
 }
 
 /// @nodoc
@@ -262,7 +262,7 @@ class __$$FavStateImplCopyWithImpl<$Res>
       authFailureOrSuccess: freezed == authFailureOrSuccess
           ? _value.authFailureOrSuccess
           : authFailureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Either<MovieAuthFailure, Unit>?,
+              as Either<MovieAuthFailure, MovieListResponseModel?>?,
     ));
   }
 }
@@ -283,7 +283,7 @@ class _$FavStateImpl implements _FavState {
   @JsonKey()
   final bool showErrorMessage;
   @override
-  final Either<MovieAuthFailure, Unit>? authFailureOrSuccess;
+  final Either<MovieAuthFailure, MovieListResponseModel?>? authFailureOrSuccess;
 
   @override
   String toString() {
@@ -316,17 +316,17 @@ class _$FavStateImpl implements _FavState {
 
 abstract class _FavState implements FavState {
   const factory _FavState(
-          {final bool isLoading,
-          final bool showErrorMessage,
-          final Either<MovieAuthFailure, Unit>? authFailureOrSuccess}) =
-      _$FavStateImpl;
+      {final bool isLoading,
+      final bool showErrorMessage,
+      final Either<MovieAuthFailure, MovieListResponseModel?>?
+          authFailureOrSuccess}) = _$FavStateImpl;
 
   @override // required String token,
   bool get isLoading;
   @override
   bool get showErrorMessage;
   @override
-  Either<MovieAuthFailure, Unit>? get authFailureOrSuccess;
+  Either<MovieAuthFailure, MovieListResponseModel?>? get authFailureOrSuccess;
   @override
   @JsonKey(ignore: true)
   _$$FavStateImplCopyWith<_$FavStateImpl> get copyWith =>

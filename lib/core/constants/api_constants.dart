@@ -14,9 +14,10 @@ extension NetwrokRoutesString on NetworkRoutes {
         return '/3/account/20506274/favorite/movies';
 
       case NetworkRoutes.ADD_FAV:
-        return '/3/account/20506274/favorite"';
+        return '/3/account/20506274/favorite';
       default:
         throw Exception('Routes Not FouND');
     }
   }
 }
+

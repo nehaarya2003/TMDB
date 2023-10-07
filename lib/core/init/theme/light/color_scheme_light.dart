@@ -51,6 +51,7 @@ class ColorSchemeLight {
   static const Color surfaceContainerHigh = Color(0xffECE6F0);
   static const Color surfaceContainer = Color(0xffF3EDF7);
   static const Color onSurface = Color(0xff1D1B20);
+  static const Color onSurfaceVariant = Color(0xff49454F);
   static const Color lightGray = Color(0xfff7f7f7);
   static const Color darkGray = Color(0xff676870);
   static const Color black = Color(0xff020306);

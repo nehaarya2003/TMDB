@@ -10,6 +10,7 @@ _$MovieResponseModelImpl _$$MovieResponseModelImplFromJson(
         Map<String, dynamic> json) =>
     _$MovieResponseModelImpl(
       poster_path: json['poster_path'] as String?,
+      id: json['id'] as int?,
       original_title: json['original_title'] as String?,
       overview: json['overview'] as String?,
     );
@@ -18,6 +19,7 @@ Map<String, dynamic> _$$MovieResponseModelImplToJson(
         _$MovieResponseModelImpl instance) =>
     <String, dynamic>{
       'poster_path': instance.poster_path,
+      'id': instance.id,
       'original_title': instance.original_title,
       'overview': instance.overview,
     };

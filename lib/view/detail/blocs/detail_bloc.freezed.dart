@@ -19,21 +19,21 @@ mixin _$DetailEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String movieID) getMovieDetail,
-    required TResult Function(String accountID) addToFav,
+    required TResult Function(String movieId, bool isFav) addToFav,
     required TResult Function(String accountID) removeFromFav,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String movieID)? getMovieDetail,
-    TResult? Function(String accountID)? addToFav,
+    TResult? Function(String movieId, bool isFav)? addToFav,
     TResult? Function(String accountID)? removeFromFav,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String movieID)? getMovieDetail,
-    TResult Function(String accountID)? addToFav,
+    TResult Function(String movieId, bool isFav)? addToFav,
     TResult Function(String accountID)? removeFromFav,
     required TResult orElse(),
   }) =>
@@ -146,7 +146,7 @@ class _$GetMovieDetailImpl implements _GetMovieDetail {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String movieID) getMovieDetail,
-    required TResult Function(String accountID) addToFav,
+    required TResult Function(String movieId, bool isFav) addToFav,
     required TResult Function(String accountID) removeFromFav,
   }) {
     return getMovieDetail(movieID);
@@ -156,7 +156,7 @@ class _$GetMovieDetailImpl implements _GetMovieDetail {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String movieID)? getMovieDetail,
-    TResult? Function(String accountID)? addToFav,
+    TResult? Function(String movieId, bool isFav)? addToFav,
     TResult? Function(String accountID)? removeFromFav,
   }) {
     return getMovieDetail?.call(movieID);
@@ -166,7 +166,7 @@ class _$GetMovieDetailImpl implements _GetMovieDetail {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String movieID)? getMovieDetail,
-    TResult Function(String accountID)? addToFav,
+    TResult Function(String movieId, bool isFav)? addToFav,
     TResult Function(String accountID)? removeFromFav,
     required TResult orElse(),
   }) {
@@ -226,7 +226,7 @@ abstract class _$$AddToFavImplCopyWith<$Res> {
           _$AddToFavImpl value, $Res Function(_$AddToFavImpl) then) =
       __$$AddToFavImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String accountID});
+  $Res call({String movieId, bool isFav});
 }
 
 /// @nodoc
@@ -240,13 +240,18 @@ class __$$AddToFavImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accountID = null,
+    Object? movieId = null,
+    Object? isFav = null,
   }) {
     return _then(_$AddToFavImpl(
-      null == accountID
-          ? _value.accountID
-          : accountID // ignore: cast_nullable_to_non_nullable
+      null == movieId
+          ? _value.movieId
+          : movieId // ignore: cast_nullable_to_non_nullable
               as String,
+      null == isFav
+          ? _value.isFav
+          : isFav // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -254,14 +259,16 @@ class __$$AddToFavImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AddToFavImpl implements _AddToFav {
-  const _$AddToFavImpl(this.accountID);
+  const _$AddToFavImpl(this.movieId, this.isFav);
 
   @override
-  final String accountID;
+  final String movieId;
+  @override
+  final bool isFav;
 
   @override
   String toString() {
-    return 'DetailEvent.addToFav(accountID: $accountID)';
+    return 'DetailEvent.addToFav(movieId: $movieId, isFav: $isFav)';
   }
 
   @override
@@ -269,12 +276,12 @@ class _$AddToFavImpl implements _AddToFav {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AddToFavImpl &&
-            (identical(other.accountID, accountID) ||
-                other.accountID == accountID));
+            (identical(other.movieId, movieId) || other.movieId == movieId) &&
+            (identical(other.isFav, isFav) || other.isFav == isFav));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, accountID);
+  int get hashCode => Object.hash(runtimeType, movieId, isFav);
 
   @JsonKey(ignore: true)
   @override
@@ -286,32 +293,32 @@ class _$AddToFavImpl implements _AddToFav {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String movieID) getMovieDetail,
-    required TResult Function(String accountID) addToFav,
+    required TResult Function(String movieId, bool isFav) addToFav,
     required TResult Function(String accountID) removeFromFav,
   }) {
-    return addToFav(accountID);
+    return addToFav(movieId, isFav);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String movieID)? getMovieDetail,
-    TResult? Function(String accountID)? addToFav,
+    TResult? Function(String movieId, bool isFav)? addToFav,
     TResult? Function(String accountID)? removeFromFav,
   }) {
-    return addToFav?.call(accountID);
+    return addToFav?.call(movieId, isFav);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String movieID)? getMovieDetail,
-    TResult Function(String accountID)? addToFav,
+    TResult Function(String movieId, bool isFav)? addToFav,
     TResult Function(String accountID)? removeFromFav,
     required TResult orElse(),
   }) {
     if (addToFav != null) {
-      return addToFav(accountID);
+      return addToFav(movieId, isFav);
     }
     return orElse();
   }
@@ -352,9 +359,11 @@ class _$AddToFavImpl implements _AddToFav {
 }
 
 abstract class _AddToFav implements DetailEvent {
-  const factory _AddToFav(final String accountID) = _$AddToFavImpl;
+  const factory _AddToFav(final String movieId, final bool isFav) =
+      _$AddToFavImpl;
 
-  String get accountID;
+  String get movieId;
+  bool get isFav;
   @JsonKey(ignore: true)
   _$$AddToFavImplCopyWith<_$AddToFavImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -426,7 +435,7 @@ class _$removeFromFavImpl implements _removeFromFav {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String movieID) getMovieDetail,
-    required TResult Function(String accountID) addToFav,
+    required TResult Function(String movieId, bool isFav) addToFav,
     required TResult Function(String accountID) removeFromFav,
   }) {
     return removeFromFav(accountID);
@@ -436,7 +445,7 @@ class _$removeFromFavImpl implements _removeFromFav {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String movieID)? getMovieDetail,
-    TResult? Function(String accountID)? addToFav,
+    TResult? Function(String movieId, bool isFav)? addToFav,
     TResult? Function(String accountID)? removeFromFav,
   }) {
     return removeFromFav?.call(accountID);
@@ -446,7 +455,7 @@ class _$removeFromFavImpl implements _removeFromFav {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String movieID)? getMovieDetail,
-    TResult Function(String accountID)? addToFav,
+    TResult Function(String movieId, bool isFav)? addToFav,
     TResult Function(String accountID)? removeFromFav,
     required TResult orElse(),
   }) {
@@ -505,7 +514,9 @@ mixin _$DetailState {
   String get movieID => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   bool get showErrorMessage => throw _privateConstructorUsedError;
-  Either<MovieDetailFailure, Unit>? get authFailureOrSuccess =>
+  Either<MovieDetailFailure, MovieDetailModel?>?
+      get movieDetailFetchSuccessFailure => throw _privateConstructorUsedError;
+  Either<bool, FavModel>? get favSuccessFailure =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -523,7 +534,9 @@ abstract class $DetailStateCopyWith<$Res> {
       {String movieID,
       bool isLoading,
       bool showErrorMessage,
-      Either<MovieDetailFailure, Unit>? authFailureOrSuccess});
+      Either<MovieDetailFailure, MovieDetailModel?>?
+          movieDetailFetchSuccessFailure,
+      Either<bool, FavModel>? favSuccessFailure});
 }
 
 /// @nodoc
@@ -542,7 +555,8 @@ class _$DetailStateCopyWithImpl<$Res, $Val extends DetailState>
     Object? movieID = null,
     Object? isLoading = null,
     Object? showErrorMessage = null,
-    Object? authFailureOrSuccess = freezed,
+    Object? movieDetailFetchSuccessFailure = freezed,
+    Object? favSuccessFailure = freezed,
   }) {
     return _then(_value.copyWith(
       movieID: null == movieID
@@ -557,10 +571,14 @@ class _$DetailStateCopyWithImpl<$Res, $Val extends DetailState>
           ? _value.showErrorMessage
           : showErrorMessage // ignore: cast_nullable_to_non_nullable
               as bool,
-      authFailureOrSuccess: freezed == authFailureOrSuccess
-          ? _value.authFailureOrSuccess
-          : authFailureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Either<MovieDetailFailure, Unit>?,
+      movieDetailFetchSuccessFailure: freezed == movieDetailFetchSuccessFailure
+          ? _value.movieDetailFetchSuccessFailure
+          : movieDetailFetchSuccessFailure // ignore: cast_nullable_to_non_nullable
+              as Either<MovieDetailFailure, MovieDetailModel?>?,
+      favSuccessFailure: freezed == favSuccessFailure
+          ? _value.favSuccessFailure
+          : favSuccessFailure // ignore: cast_nullable_to_non_nullable
+              as Either<bool, FavModel>?,
     ) as $Val);
   }
 }
@@ -577,7 +595,9 @@ abstract class _$$ContentStateImplCopyWith<$Res>
       {String movieID,
       bool isLoading,
       bool showErrorMessage,
-      Either<MovieDetailFailure, Unit>? authFailureOrSuccess});
+      Either<MovieDetailFailure, MovieDetailModel?>?
+          movieDetailFetchSuccessFailure,
+      Either<bool, FavModel>? favSuccessFailure});
 }
 
 /// @nodoc
@@ -594,7 +614,8 @@ class __$$ContentStateImplCopyWithImpl<$Res>
     Object? movieID = null,
     Object? isLoading = null,
     Object? showErrorMessage = null,
-    Object? authFailureOrSuccess = freezed,
+    Object? movieDetailFetchSuccessFailure = freezed,
+    Object? favSuccessFailure = freezed,
   }) {
     return _then(_$ContentStateImpl(
       movieID: null == movieID
@@ -609,10 +630,14 @@ class __$$ContentStateImplCopyWithImpl<$Res>
           ? _value.showErrorMessage
           : showErrorMessage // ignore: cast_nullable_to_non_nullable
               as bool,
-      authFailureOrSuccess: freezed == authFailureOrSuccess
-          ? _value.authFailureOrSuccess
-          : authFailureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Either<MovieDetailFailure, Unit>?,
+      movieDetailFetchSuccessFailure: freezed == movieDetailFetchSuccessFailure
+          ? _value.movieDetailFetchSuccessFailure
+          : movieDetailFetchSuccessFailure // ignore: cast_nullable_to_non_nullable
+              as Either<MovieDetailFailure, MovieDetailModel?>?,
+      favSuccessFailure: freezed == favSuccessFailure
+          ? _value.favSuccessFailure
+          : favSuccessFailure // ignore: cast_nullable_to_non_nullable
+              as Either<bool, FavModel>?,
     ));
   }
 }
@@ -624,7 +649,8 @@ class _$ContentStateImpl implements _ContentState {
       {required this.movieID,
       this.isLoading = false,
       this.showErrorMessage = false,
-      this.authFailureOrSuccess});
+      this.movieDetailFetchSuccessFailure,
+      this.favSuccessFailure});
 
   @override
   final String movieID;
@@ -635,11 +661,14 @@ class _$ContentStateImpl implements _ContentState {
   @JsonKey()
   final bool showErrorMessage;
   @override
-  final Either<MovieDetailFailure, Unit>? authFailureOrSuccess;
+  final Either<MovieDetailFailure, MovieDetailModel?>?
+      movieDetailFetchSuccessFailure;
+  @override
+  final Either<bool, FavModel>? favSuccessFailure;
 
   @override
   String toString() {
-    return 'DetailState(movieID: $movieID, isLoading: $isLoading, showErrorMessage: $showErrorMessage, authFailureOrSuccess: $authFailureOrSuccess)';
+    return 'DetailState(movieID: $movieID, isLoading: $isLoading, showErrorMessage: $showErrorMessage, movieDetailFetchSuccessFailure: $movieDetailFetchSuccessFailure, favSuccessFailure: $favSuccessFailure)';
   }
 
   @override
@@ -652,13 +681,17 @@ class _$ContentStateImpl implements _ContentState {
                 other.isLoading == isLoading) &&
             (identical(other.showErrorMessage, showErrorMessage) ||
                 other.showErrorMessage == showErrorMessage) &&
-            (identical(other.authFailureOrSuccess, authFailureOrSuccess) ||
-                other.authFailureOrSuccess == authFailureOrSuccess));
+            (identical(other.movieDetailFetchSuccessFailure,
+                    movieDetailFetchSuccessFailure) ||
+                other.movieDetailFetchSuccessFailure ==
+                    movieDetailFetchSuccessFailure) &&
+            (identical(other.favSuccessFailure, favSuccessFailure) ||
+                other.favSuccessFailure == favSuccessFailure));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, movieID, isLoading, showErrorMessage, authFailureOrSuccess);
+  int get hashCode => Object.hash(runtimeType, movieID, isLoading,
+      showErrorMessage, movieDetailFetchSuccessFailure, favSuccessFailure);
 
   @JsonKey(ignore: true)
   @override
@@ -669,11 +702,12 @@ class _$ContentStateImpl implements _ContentState {
 
 abstract class _ContentState implements DetailState {
   const factory _ContentState(
-          {required final String movieID,
-          final bool isLoading,
-          final bool showErrorMessage,
-          final Either<MovieDetailFailure, Unit>? authFailureOrSuccess}) =
-      _$ContentStateImpl;
+      {required final String movieID,
+      final bool isLoading,
+      final bool showErrorMessage,
+      final Either<MovieDetailFailure, MovieDetailModel?>?
+          movieDetailFetchSuccessFailure,
+      final Either<bool, FavModel>? favSuccessFailure}) = _$ContentStateImpl;
 
   @override
   String get movieID;
@@ -682,7 +716,10 @@ abstract class _ContentState implements DetailState {
   @override
   bool get showErrorMessage;
   @override
-  Either<MovieDetailFailure, Unit>? get authFailureOrSuccess;
+  Either<MovieDetailFailure, MovieDetailModel?>?
+      get movieDetailFetchSuccessFailure;
+  @override
+  Either<bool, FavModel>? get favSuccessFailure;
   @override
   @JsonKey(ignore: true)
   _$$ContentStateImplCopyWith<_$ContentStateImpl> get copyWith =>

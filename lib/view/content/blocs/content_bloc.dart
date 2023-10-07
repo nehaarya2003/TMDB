@@ -27,8 +27,8 @@ class ContentBloc extends Bloc<ContentEvent, ContentState> {
       (event, emit) async {
         await event.when<FutureOr<void>>(
           authenticateApp: () => _onAuthenticateApp(emit, AppConstants.token),
-          addToFav: () => __onAddToFav(emit, "token"),
-          indexChanged: (int index) =>  emit(indexChangedState(true ,index:index)),
+          indexChanged: (int index) =>
+              emit(indexChangedState(true, index: index)),
         );
       },
     );
@@ -43,8 +43,8 @@ class ContentBloc extends Bloc<ContentEvent, ContentState> {
 
       if (result is Success<AuthResponseModel>) {
         final movieReponse = await authRepository.discoverMovies();
-        if(movieReponse is Success<MovieListResponseModel>){
-          emit(getSuccessState(true,reponseData: movieReponse.data));
+        if (movieReponse is Success<MovieListResponseModel>) {
+          emit(getSuccessState(true, reponseData: movieReponse.data));
         }
       } else {
         final errorMessage =
@@ -55,25 +55,8 @@ class ContentBloc extends Bloc<ContentEvent, ContentState> {
     }
   }
 
-  Future<void> __onAddToFav(Emitter<ContentState> emit, String token) async {
-    final isTokenValid = state.token.isNotEmpty;
-
-    if (isTokenValid) {
-      final res = await authRepository.addToFav();
-
-      if (res == true) {
-        final movieReponse = await authRepository.discoverMovies();
-        if(movieReponse is Success<MovieListResponseModel>){
-          emit(getSuccessState(true,reponseData: movieReponse.data));
-        }
-
-      }
-    } else {
-      emit(getFailureState(true));
-    }
-  }
-
-  ContentState getSuccessState(bool condition, {required MovieListResponseModel reponseData}) {
+  ContentState getSuccessState(bool condition,
+      {required MovieListResponseModel reponseData}) {
     return state.copyWith(
       isLoading: false,
       showErrorMessage: false,
@@ -81,10 +64,11 @@ class ContentBloc extends Bloc<ContentEvent, ContentState> {
       authFailureOrSuccess: (condition) ? right(unit) : null,
     );
   }
-ContentState indexChangedState(bool condition, {required int index}) {
+
+  ContentState indexChangedState(bool condition, {required int index}) {
     return state.copyWith(
       isLoading: false,
-      index:index,
+      index: index,
       showErrorMessage: false,
       authFailureOrSuccess: (condition) ? right(unit) : null,
     );

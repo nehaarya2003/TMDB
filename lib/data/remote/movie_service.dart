@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:sample/core/constants/api_constants.dart';
 import 'package:sample/core/init/network/api_result.dart';
 import 'package:sample/core/init/network/network_manager.dart';
 import 'package:sample/view/content/model/auth/auth_response_model.dart';
 import 'package:sample/view/content/model/movie/movie_list_reponse_model.dart';
+import 'package:sample/view/detail/model/movie_detail_model.dart';
 
 import '../../core/di/injector_provider.dart';
 import '../../core/enums/http_request_enum.dart';
@@ -33,52 +36,41 @@ class MovieService {
     );
   }
 
-  Future<MovieListResponseModel?> getMovieDetail(String movieId) async {
+  Future<ApiResult<MovieDetailModel>?>? getMovieDetail(String movieId) async {
     final Map<String, Object> query = <String, Object>{};
     query['language'] = 'en-US';
-    query[''] = movieId;
-    final response = await manager.coreDioS
-        ?.send<MovieListResponseModel, MovieListResponseModel>(
-      NetworkRoutes.MOVIE_DETAIL.rawValue,
+    return await manager.coreDio?.safeCall(
+      '${NetworkRoutes.MOVIE_DETAIL.rawValue}/$movieId',
+      MovieDetailModel.fromJson,
       queryParameters: query,
-      parseModel: MovieListResponseModel(),
       type: HttpTypes.get,
     );
-
-    if (response?.data is MovieListResponseModel) {
-      return response?.data;
-    } else {
-      return null;
-    }
   }
 
-  Future<MovieListResponseModel?> getFavList() async {
-    final response = await manager.coreDioS
-        ?.send<MovieListResponseModel, MovieListResponseModel>(
+  Future<ApiResult<MovieListResponseModel>?>? getFavList() async {
+    final Map<String, Object> query = <String, Object>{};
+    query['language'] = 'en-US';
+    query['sort_by'] = 'created_at.asc';
+    return await manager.coreDio?.safeCall(
       NetworkRoutes.FAV_LIST.rawValue,
-      parseModel: MovieListResponseModel(),
+      MovieListResponseModel.fromJson,
+      queryParameters: query,
       type: HttpTypes.get,
     );
-
-    if (response?.data is MovieListResponseModel) {
-      return response?.data;
-    } else {
-      return null;
-    }
   }
 
-  Future<MovieListResponseModel?> addToFav() async {
-    final response = await manager.coreDioS
-        ?.send<MovieListResponseModel, MovieListResponseModel>(
-      NetworkRoutes.FAV_LIST.rawValue,
-      parseModel: MovieListResponseModel(),
-      type: HttpTypes.get,
-    );
+  Future<ApiResult<AuthResponseModel>?>? addToFav(
+      String movieID, bool isFav) async {
+    final Map<String, Object> query = <String, Object>{};
+    query['media_type'] = 'movie';
+    query['media_id'] = movieID;
+    query['favorite'] = isFav;
 
-    if (response?.data is MovieListResponseModel) {
-      return response?.data;
-    } else {
-      return null;
-    }
+    return await manager.coreDio?.safeCall(
+      NetworkRoutes.ADD_FAV.rawValue,
+      AuthResponseModel.fromJson,
+      data: jsonEncode(query),
+      type: HttpTypes.post,
+    );
   }
 }

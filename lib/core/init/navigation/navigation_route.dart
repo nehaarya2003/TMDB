@@ -36,7 +36,8 @@ final GoRouter navigationRouter = GoRouter(
           name: 'details',
           path: 'details',
           builder: (BuildContext context, GoRouterState state) {
-            return DetailView();
+            final movieId = state.extra as String;
+            return DetailView(movieId: movieId,);
           },
         ),
         GoRoute(

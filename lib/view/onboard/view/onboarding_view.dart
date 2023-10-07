@@ -217,18 +217,21 @@ class LetsGoWidget extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 48),
       height: 40,
       width: 120,
-      child: ElevatedButton(
-        onPressed: () => (context.goNamed('content')),
-        style: ElevatedButton.styleFrom(
-            backgroundColor: ColorSchemeLight.buttonBackground),
-        // This is what you need!
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(100),
+        child: ElevatedButton(
+          onPressed: () => (context.goNamed('auth')),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: ColorSchemeLight.buttonBackground),
+          // This is what you need!
 
-        child: Text(
-          " -> Lets Go",
-          style: Theme.of(context)
-              .textTheme
-              .titleMedium
-              ?.copyWith(color: ColorSchemeLight.black),
+          child: Text(
+            " -> Lets Go",
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium
+                ?.copyWith(color: ColorSchemeLight.black),
+          ),
         ),
       ),
     );

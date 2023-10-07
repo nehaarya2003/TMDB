@@ -19,19 +19,19 @@ mixin _$AuthFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() invalidEmailAndPasswordCombination,
-    required TResult Function() serverError,
+    required TResult Function(String message) serverError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? invalidEmailAndPasswordCombination,
-    TResult? Function()? serverError,
+    TResult? Function(String message)? serverError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? invalidEmailAndPasswordCombination,
-    TResult Function()? serverError,
+    TResult Function(String message)? serverError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -121,7 +121,7 @@ class _$InvalidEmailAndPasswordCombinationImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() invalidEmailAndPasswordCombination,
-    required TResult Function() serverError,
+    required TResult Function(String message) serverError,
   }) {
     return invalidEmailAndPasswordCombination();
   }
@@ -130,7 +130,7 @@ class _$InvalidEmailAndPasswordCombinationImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? invalidEmailAndPasswordCombination,
-    TResult? Function()? serverError,
+    TResult? Function(String message)? serverError,
   }) {
     return invalidEmailAndPasswordCombination?.call();
   }
@@ -139,7 +139,7 @@ class _$InvalidEmailAndPasswordCombinationImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? invalidEmailAndPasswordCombination,
-    TResult Function()? serverError,
+    TResult Function(String message)? serverError,
     required TResult orElse(),
   }) {
     if (invalidEmailAndPasswordCombination != null) {
@@ -193,6 +193,8 @@ abstract class _$$ServerErrorImplCopyWith<$Res> {
   factory _$$ServerErrorImplCopyWith(
           _$ServerErrorImpl value, $Res Function(_$ServerErrorImpl) then) =
       __$$ServerErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
 }
 
 /// @nodoc
@@ -202,54 +204,78 @@ class __$$ServerErrorImplCopyWithImpl<$Res>
   __$$ServerErrorImplCopyWithImpl(
       _$ServerErrorImpl _value, $Res Function(_$ServerErrorImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$ServerErrorImpl(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ServerErrorImpl implements _ServerError {
-  const _$ServerErrorImpl();
+  const _$ServerErrorImpl(this.message);
+
+  @override
+  final String message;
 
   @override
   String toString() {
-    return 'AuthFailure.serverError()';
+    return 'AuthFailure.serverError(message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ServerErrorImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ServerErrorImpl &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ServerErrorImplCopyWith<_$ServerErrorImpl> get copyWith =>
+      __$$ServerErrorImplCopyWithImpl<_$ServerErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() invalidEmailAndPasswordCombination,
-    required TResult Function() serverError,
+    required TResult Function(String message) serverError,
   }) {
-    return serverError();
+    return serverError(message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? invalidEmailAndPasswordCombination,
-    TResult? Function()? serverError,
+    TResult? Function(String message)? serverError,
   }) {
-    return serverError?.call();
+    return serverError?.call(message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? invalidEmailAndPasswordCombination,
-    TResult Function()? serverError,
+    TResult Function(String message)? serverError,
     required TResult orElse(),
   }) {
     if (serverError != null) {
-      return serverError();
+      return serverError(message);
     }
     return orElse();
   }
@@ -290,5 +316,10 @@ class _$ServerErrorImpl implements _ServerError {
 }
 
 abstract class _ServerError implements AuthFailure {
-  const factory _ServerError() = _$ServerErrorImpl;
+  const factory _ServerError(final String message) = _$ServerErrorImpl;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$ServerErrorImplCopyWith<_$ServerErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

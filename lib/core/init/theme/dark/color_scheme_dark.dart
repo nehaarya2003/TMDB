@@ -13,12 +13,12 @@ class ColorSchemeDark {
         secondaryContainer: secondaryContainer,
         tertiary: tertiary,
         surface: surface,
-        background: background,
+        background: onBackground,
         error: error,
         onPrimary: onPrimary,
         onSecondary: onSecondary,
         onSurface: onSurface,
-        onBackground: Colors.black12,
+        onBackground: background,
         onError: onError,
         surfaceVariant: surfaceContainerHigh,
         brightness: Brightness.light);
@@ -39,7 +39,7 @@ class ColorSchemeDark {
   static const Color errorContainer = Color(0xff8C1D18);
   static const Color onErrorContainer = Color(0xffF9DEDC);
 
-  static const Color background = Color(0xffFFFBFE);
+  static const Color background = Color(0xff141218);
   static const Color onBackground = Color(0xff1C1B1F);
   static const Color outline = Color(0xff938F99);
 

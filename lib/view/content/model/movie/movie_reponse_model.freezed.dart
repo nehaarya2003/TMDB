@@ -21,6 +21,7 @@ MovieResponseModel _$MovieResponseModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MovieResponseModel {
   String? get poster_path => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String? get original_title => throw _privateConstructorUsedError;
   String? get overview => throw _privateConstructorUsedError;
 
@@ -36,7 +37,8 @@ abstract class $MovieResponseModelCopyWith<$Res> {
           MovieResponseModel value, $Res Function(MovieResponseModel) then) =
       _$MovieResponseModelCopyWithImpl<$Res, MovieResponseModel>;
   @useResult
-  $Res call({String? poster_path, String? original_title, String? overview});
+  $Res call(
+      {String? poster_path, int? id, String? original_title, String? overview});
 }
 
 /// @nodoc
@@ -53,6 +55,7 @@ class _$MovieResponseModelCopyWithImpl<$Res, $Val extends MovieResponseModel>
   @override
   $Res call({
     Object? poster_path = freezed,
+    Object? id = freezed,
     Object? original_title = freezed,
     Object? overview = freezed,
   }) {
@@ -61,6 +64,10 @@ class _$MovieResponseModelCopyWithImpl<$Res, $Val extends MovieResponseModel>
           ? _value.poster_path
           : poster_path // ignore: cast_nullable_to_non_nullable
               as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       original_title: freezed == original_title
           ? _value.original_title
           : original_title // ignore: cast_nullable_to_non_nullable
@@ -81,7 +88,8 @@ abstract class _$$MovieResponseModelImplCopyWith<$Res>
       __$$MovieResponseModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? poster_path, String? original_title, String? overview});
+  $Res call(
+      {String? poster_path, int? id, String? original_title, String? overview});
 }
 
 /// @nodoc
@@ -96,6 +104,7 @@ class __$$MovieResponseModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? poster_path = freezed,
+    Object? id = freezed,
     Object? original_title = freezed,
     Object? overview = freezed,
   }) {
@@ -104,6 +113,10 @@ class __$$MovieResponseModelImplCopyWithImpl<$Res>
           ? _value.poster_path
           : poster_path // ignore: cast_nullable_to_non_nullable
               as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       original_title: freezed == original_title
           ? _value.original_title
           : original_title // ignore: cast_nullable_to_non_nullable
@@ -120,7 +133,7 @@ class __$$MovieResponseModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MovieResponseModelImpl implements _MovieResponseModel {
   _$MovieResponseModelImpl(
-      {this.poster_path, this.original_title, this.overview});
+      {this.poster_path, this.id, this.original_title, this.overview});
 
   factory _$MovieResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$MovieResponseModelImplFromJson(json);
@@ -128,13 +141,15 @@ class _$MovieResponseModelImpl implements _MovieResponseModel {
   @override
   final String? poster_path;
   @override
+  final int? id;
+  @override
   final String? original_title;
   @override
   final String? overview;
 
   @override
   String toString() {
-    return 'MovieResponseModel(poster_path: $poster_path, original_title: $original_title, overview: $overview)';
+    return 'MovieResponseModel(poster_path: $poster_path, id: $id, original_title: $original_title, overview: $overview)';
   }
 
   @override
@@ -144,6 +159,7 @@ class _$MovieResponseModelImpl implements _MovieResponseModel {
             other is _$MovieResponseModelImpl &&
             (identical(other.poster_path, poster_path) ||
                 other.poster_path == poster_path) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.original_title, original_title) ||
                 other.original_title == original_title) &&
             (identical(other.overview, overview) ||
@@ -153,7 +169,7 @@ class _$MovieResponseModelImpl implements _MovieResponseModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, poster_path, original_title, overview);
+      Object.hash(runtimeType, poster_path, id, original_title, overview);
 
   @JsonKey(ignore: true)
   @override
@@ -173,6 +189,7 @@ class _$MovieResponseModelImpl implements _MovieResponseModel {
 abstract class _MovieResponseModel implements MovieResponseModel {
   factory _MovieResponseModel(
       {final String? poster_path,
+      final int? id,
       final String? original_title,
       final String? overview}) = _$MovieResponseModelImpl;
 
@@ -181,6 +198,8 @@ abstract class _MovieResponseModel implements MovieResponseModel {
 
   @override
   String? get poster_path;
+  @override
+  int? get id;
   @override
   String? get original_title;
   @override

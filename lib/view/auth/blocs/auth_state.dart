@@ -11,7 +11,7 @@ class AuthenticationState with _$AuthenticationState {
     @Default(false) bool showErrorMessage,
     @Default(false) bool authenticationSuccess,
     @Default(true) bool obscurePassword,
-    Either<AuthFailure, Unit>? authFailureOrSuccess,
+    Either<AuthFailure, AuthResponseModel>? authFailureOrSuccess,
     // Unit comes from Dartz package and is equivalent to void.
   }) = _LoginFormState;
 

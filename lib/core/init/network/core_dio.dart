@@ -44,7 +44,6 @@ class CoreDio
     switch (response.statusCode) {
       case HttpStatus.ok:
       case HttpStatus.accepted:
-        // final model = responseParser<R, T>(parseModel, response.data);
         return ResponseModel<R>(data: response.data);
       default:
         return ResponseModel(error: BaseError('message'));
@@ -61,13 +60,19 @@ class CoreDio
       CancelToken? cancelToken,
       ProgressCallback? onSendProgress,
       ProgressCallback? onReceiveProgress}) async {
+
+    Options optionOver;
+    if(options!=null){
+      optionOver=options.copyWith(method: type.name.toString());
+    }else{
+      optionOver=Options(method: type.name.toString());
+    }
     try {
+
       final response = await request<dynamic>(path,
           data: data,
           queryParameters: queryParameters,
-          options:  Options(
-            method: type.name.toString(),
-          ),
+          options:  optionOver,
           cancelToken: cancelToken,
           onSendProgress: onSendProgress,
           onReceiveProgress: onReceiveProgress);

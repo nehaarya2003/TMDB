@@ -7,11 +7,13 @@ class DetailState with _$DetailState {
     required String movieID,
     @Default(false) bool isLoading,
     @Default(false) bool showErrorMessage,
-    Either<MovieDetailFailure, Unit>? authFailureOrSuccess,
+    Either<MovieDetailFailure,MovieDetailModel?>? movieDetailFetchSuccessFailure,
+    Either<bool,FavModel>? favSuccessFailure,
   }) = _ContentState;
 
   factory DetailState.initial() => const DetailState(
     movieID: '',
+    isLoading: true,
   );
 }
 

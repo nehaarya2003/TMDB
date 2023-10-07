@@ -2,35 +2,19 @@ import 'package:flutter/material.dart';
 
 import '../../../core/di/injector_provider.dart';
 import '../../../domain/repositories/iauth_repository.dart';
+import '../../../view/content/model/auth/auth_response_model.dart';
 import '../../remote/auth/auth_service.dart';
 
 class AuthRepository implements IAuthRepository {
   final AuthService _dio = inject<AuthService>();
 
-  Future<bool> loginUser(String login, String senha) async {
-    try {
-      // Make a GET request to the API endpoint to fetch user data.
-      final response = await _dio.loginUser(login, senha);
-
-      // Check if the response status code is 200 (OK).
-      return response;
-    } catch (e) {
-      // If any exception occurs during the API call, throw an exception with the error message.
-      throw Exception('An error occurred: $e');
-    }
+  @override
+  Future<AuthResponseModel> loginUser(String userName, String password) async {
+    return await _dio.loginUser(userName, password);
   }
 
   @override
-  Future<bool> createUser(String login, String senha) async{
-    try {
-      // Make a GET request to the API endpoint to fetch user data.
-      final response = await _dio.createUser(login, senha);
-
-      // Check if the response status code is 200 (OK).
-      return response;
-    } catch (e) {
-      // If any exception occurs during the API call, throw an exception with the error message.
-      throw Exception('An error occurred: $e');
-    }
+  Future<AuthResponseModel> createUser(String userName, String password) async {
+    return await _dio.createUser(userName, password);
   }
 }

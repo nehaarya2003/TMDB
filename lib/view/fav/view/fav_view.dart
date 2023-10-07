@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sample/core/base/extension/either_ext.dart';
 import 'package:sample/view/auth/blocs/auth_bloc.dart';
+import 'package:sample/view/content/model/movie/movie_reponse_model.dart';
 import 'package:sample/view/fav/blocs/fav_bloc.dart';
 
 class FavView extends StatelessWidget {
@@ -12,7 +14,7 @@ class FavView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => FavBloc(),
+      create: (_) => FavBloc()..add(const FavEvent.getFavList()),
       child: _Fav(),
     );
   }
@@ -31,15 +33,44 @@ class _Fav extends StatelessWidget {
           style: Theme.of(context).textTheme.titleLarge,
         ),
         actions: [
-          IconButton(icon: const Icon(Icons.settings), onPressed: () {})
+          IconButton(
+              icon: const Icon(Icons.settings),
+              onPressed: () {
+                context.pushNamed('settings');
+              })
         ],
       ),
       body: BlocBuilder<FavBloc, FavState>(
         builder: (context, contentState) {
-          return const Padding(
-            padding: EdgeInsets.symmetric(vertical: 20),
-            child: _FavTuple(image: 'assets/images/auth.png',heading: 'Barbie',subHeading: 'descrip')
-          );
+          if (contentState.isLoading == true) {
+            return const Center(child: CircularProgressIndicator());
+          } else if(contentState.authFailureOrSuccess?.isRight()==true){
+            return ListView.builder(
+              itemCount:
+                  contentState.authFailureOrSuccess?.asRight()?.results.length,
+              prototypeItem: ListTile(
+                title: _FavTuple(
+                    responseModel: contentState.authFailureOrSuccess
+                        ?.asRight()!
+                        .results
+                        .first),
+              ),
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: _FavTuple(
+                      responseModel: contentState.authFailureOrSuccess
+                          ?.asRight()!
+                          .results
+                          .elementAt(index)),
+                );
+              },
+            );
+          }else{
+            return    const SnackBar(
+              content: Text('Something went wrong'),
+            );
+           //  return Container(child:ScaffoldMessenger.of(context).showSnackBar(snackBar));
+          }
         },
       ),
       persistentFooterButtons: const [
@@ -112,36 +143,48 @@ class _Footer extends StatelessWidget {
 
 class _FavTuple extends StatelessWidget {
   const _FavTuple({
-    super.key,
-    required this.image,
-    required this.heading,
-    required this.subHeading,
+    required this.responseModel,
   });
 
-  final String image;
-  final String heading;
-  final String subHeading;
+  final MovieResponseModel? responseModel;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 80,
-      width: context.sizes.width * 0.45,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+      child:
           Container(
+            padding: EdgeInsets.symmetric(vertical: 4),
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.secondaryContainer,
               borderRadius: const BorderRadius.all(Radius.circular(10)),
             ),
-            child: Row(children: [
-              Image.asset(
-                image,
+            child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+              child:FadeInImage(
+                image: NetworkImage(
+                    'https://image.tmdb.org/t/p/w500/${responseModel?.poster_path}',
+                    headers: {
+                      'accept': 'application/json',
+                      'Authorization': 'Bearer 65a62eb3d9b8c21b9ff004407bd6d027'
+                    }),
+                placeholder: const AssetImage('assets/images/auth.png'),
+                fit: BoxFit.cover,
                 height: 56,
                 width: 56,
               ),
-              const Column(children: [Text("title"), Text('description')]),
+
+                ),
+              Container( width: context.sizes.width*.6,
+                  child:
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                Text(responseModel?.original_title ?? 'dsdff',overflow: TextOverflow.ellipsis,maxLines: 1,style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Theme.of(context).colorScheme.onSurface),),
+                Text(responseModel?.overview ?? '',overflow: TextOverflow.ellipsis,maxLines: 1,style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),),
+              ])),
               SvgPicture.asset(
                 'assets/images/play.svg',
                 semanticsLabel: 'My SVG Image',
@@ -150,8 +193,7 @@ class _FavTuple extends StatelessWidget {
               ),
             ]),
           ),
-        ],
-      ),
+
     );
   }
 }

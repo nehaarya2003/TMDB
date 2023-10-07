@@ -14,7 +14,7 @@ class ContentView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => ContentBloc()..add(ContentEvent.authenticateApp()),
+      create: (_) => ContentBloc()..add(const ContentEvent.authenticateApp()),
       child: _Content(),
     );
   }
@@ -23,124 +23,155 @@ class ContentView extends StatelessWidget {
 class _Content extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage("assets/images/onboarding.png"),
-            fit: BoxFit.cover),
-      ),
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          centerTitle: true,
-          elevation: 0,
-          title: Text(
-            "Trending",
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          actions: [
-            IconButton(
-                icon: const Icon(Icons.settings),
-                onPressed: () {
-                  context.pushNamed('settings');
-                })
-          ],
-        ),
-        body: BlocBuilder<ContentBloc, ContentState>(
-          builder: (context, contentState) {
-            if (contentState.isLoading == true) {
-              return const Center(child: CircularProgressIndicator());
-            } else {
-              return Padding(
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: BlocBuilder<ContentBloc, ContentState>(
+        builder: (context, contentState) {
+          if (contentState.isLoading == true) {
+            return const Center(child: CircularProgressIndicator());
+          } else {
+            return Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: NetworkImage(
+                        'https://image.tmdb.org/t/p/w500/${contentState.movieResponse?.results.elementAt(contentState.index).poster_path}'),
+                    fit: BoxFit.cover,
+                    opacity: 0.5),
+              ),
+              child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
-                child: Column(children: [
-                  CarouselSlider.builder(
-                    options: CarouselOptions(
-                      height: 300,
-                      onPageChanged: (index, reason) {
-                        BlocProvider.of<ContentBloc>(context)
-                            .add(ContentEvent.indexChanged(index));
-                      },
-                      viewportFraction: 0.5,
-                      enlargeCenterPage: true,
+                child: Column(
+                  children: [
+                    Padding(padding: EdgeInsets.symmetric(vertical: 10),
+                   child: Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        const SizedBox(width: 20,),
+                        Text(
+                          "Trending",
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        IconButton(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                            icon: const Icon(Icons.settings),
+                            onPressed: () {
+                              context.pushNamed('settings');
+                            }),
+
+                      ],
                     ),
-                    itemCount: contentState.movieResponse?.results.length,
-                    itemBuilder: (BuildContext context, int itemIndex,
-                            int pageViewIndex) =>
-                        Container(
-                      height: double.infinity,
-                      child: SizedBox(
-                        height: 300,
-                        width: 200,
-                        child: Card(
-                            child: FadeInImage(
-                          image: NetworkImage('https://image.tmdb.org/t/p/w500/${contentState.movieResponse?.results
-                                      .elementAt(itemIndex)
-                                      .poster_path}',
-                              headers: {
-                                'accept': 'application/json',
-                                'Authorization': 'Bearer 65a62eb3d9b8c21b9ff004407bd6d027'
-                              }),
-                          placeholder: AssetImage('assets/images/auth.png'),
-                          fit: BoxFit.cover,
-                        )),
+                    ),
+                   const SizedBox(height: 20,),
+                   // Column(children: [
+                      CarouselSlider.builder(
+                        options: CarouselOptions(
+                          height: 300,
+                          onPageChanged: (index, reason) {
+                            BlocProvider.of<ContentBloc>(context)
+                                .add(ContentEvent.indexChanged(index));
+                          },
+                          viewportFraction: 0.5,
+                          enlargeCenterPage: true,
+                        ),
+                        itemCount: contentState.movieResponse?.results.length,
+                        itemBuilder: (BuildContext context, int itemIndex,
+                                int pageViewIndex) =>
+                            GestureDetector(
+                          onTap: () {
+                            context.pushNamed('details',
+                                extra: contentState.movieResponse?.results
+                                    .elementAt(itemIndex)
+                                    .id
+                                    .toString());
+                          },
+                          child: SizedBox(
+                            height: 300,
+                            width: 200,
+                            child: Card(
+                              color: Theme.of(context).colorScheme.background,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  //set border radius more than 50% of height and width to make circle
+                                ),
+
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                  child: FadeInImage(
+                                    image: NetworkImage(
+                                        'https://image.tmdb.org/t/p/w500/${contentState.movieResponse?.results.elementAt(itemIndex).poster_path}',
+                                        headers: {
+                                          'accept': 'application/json',
+                                          'Authorization':
+                                              'Bearer 65a62eb3d9b8c21b9ff004407bd6d027'
+                                        }),
+                                    placeholder:
+                                        AssetImage('assets/images/auth.png'),
+                                    fit: BoxFit.cover,
+                                  )),
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-
-                  Padding(padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
-                  child: Text(
-                      contentState.movieResponse?.results
-                          .elementAt(contentState.index)
-                          .original_title ??
-                          '',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign:TextAlign.center,
-                      style: Theme.of(context)
-                          .textTheme
-                          .displayMedium
-                          ?.copyWith(
-                          color: Theme.of(context).colorScheme.onSurface),
-
-                  ),),
-
-            Padding(padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
-            child:
-                  Text(
-                      contentState.movieResponse?.results
-                              .elementAt(contentState.index)
-                              .overview ??
-                          '',
-                      textAlign:TextAlign.justify,
-
-                      style: Theme.of(context).textTheme.bodyLarge),),
-                ]),
-              );
-            }
-          },
-        ),
-        persistentFooterButtons: [
-          Row(children: [
-            _Footer(
-              mainImage: 'assets/images/movie.svg',
-              heading: 'Movies',
-              subHeading: '',
-              background: true,
-              voidCallback: () {},
-            ),
-            _Footer(
-                mainImage: 'assets/images/fav.svg',
-                heading: 'Favourites',
-                subHeading: '',
-                background: false,
-                voidCallback: () {
-                  context.pushNamed('fav');
-                }),
-          ])
-        ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 20),
+                        child: Text(
+                          contentState.movieResponse?.results
+                                  .elementAt(contentState.index)
+                                  .original_title ??
+                              '',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayMedium
+                              ?.copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.onSurface),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 20),
+                          child: Text(
+                              contentState.movieResponse?.results
+                                      .elementAt(contentState.index)
+                                      .overview ??
+                                  '',
+                              textAlign: TextAlign.justify,
+                              style: Theme.of(context).textTheme.bodyLarge),
+                        ),
+                      ),
+                   // ]),
+                  ],
+                ),
+              ),
+            );
+          }
+        },
       ),
+      persistentFooterButtons: [
+        Row(children: [
+          _Footer(
+            mainImage: 'assets/images/movie.svg',
+            heading: 'Movies',
+            subHeading: '',
+            background: true,
+            voidCallback: () {},
+          ),
+          _Footer(
+              mainImage: 'assets/images/fav.svg',
+              heading: 'Favourites',
+              subHeading: '',
+              background: false,
+              voidCallback: () {
+                context.pushNamed('fav');
+              }),
+        ])
+      ],
     );
   }
 }

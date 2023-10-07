@@ -6,5 +6,5 @@ import '../../view/content/model/auth/auth_response_model.dart';
 abstract class IMovieAuthRepository {
   Future<ApiResult<AuthResponseModel>?>? authenticateAccount();
   Future<ApiResult<MovieListResponseModel>?>? discoverMovies();
-  Future<MovieListResponseModel?> getFavList();
+  Future<ApiResult<MovieListResponseModel>?>? getFavList();
 }

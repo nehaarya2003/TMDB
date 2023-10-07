@@ -624,7 +624,7 @@ mixin _$AuthenticationState {
   bool get showErrorMessage => throw _privateConstructorUsedError;
   bool get authenticationSuccess => throw _privateConstructorUsedError;
   bool get obscurePassword => throw _privateConstructorUsedError;
-  Either<AuthFailure, Unit>? get authFailureOrSuccess =>
+  Either<AuthFailure, AuthResponseModel>? get authFailureOrSuccess =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -646,7 +646,7 @@ abstract class $AuthenticationStateCopyWith<$Res> {
       bool showErrorMessage,
       bool authenticationSuccess,
       bool obscurePassword,
-      Either<AuthFailure, Unit>? authFailureOrSuccess});
+      Either<AuthFailure, AuthResponseModel>? authFailureOrSuccess});
 }
 
 /// @nodoc
@@ -703,7 +703,7 @@ class _$AuthenticationStateCopyWithImpl<$Res, $Val extends AuthenticationState>
       authFailureOrSuccess: freezed == authFailureOrSuccess
           ? _value.authFailureOrSuccess
           : authFailureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Either<AuthFailure, Unit>?,
+              as Either<AuthFailure, AuthResponseModel>?,
     ) as $Val);
   }
 }
@@ -724,7 +724,7 @@ abstract class _$$LoginFormStateImplCopyWith<$Res>
       bool showErrorMessage,
       bool authenticationSuccess,
       bool obscurePassword,
-      Either<AuthFailure, Unit>? authFailureOrSuccess});
+      Either<AuthFailure, AuthResponseModel>? authFailureOrSuccess});
 }
 
 /// @nodoc
@@ -779,7 +779,7 @@ class __$$LoginFormStateImplCopyWithImpl<$Res>
       authFailureOrSuccess: freezed == authFailureOrSuccess
           ? _value.authFailureOrSuccess
           : authFailureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Either<AuthFailure, Unit>?,
+              as Either<AuthFailure, AuthResponseModel>?,
     ));
   }
 }
@@ -817,7 +817,7 @@ class _$LoginFormStateImpl implements _LoginFormState {
   @JsonKey()
   final bool obscurePassword;
   @override
-  final Either<AuthFailure, Unit>? authFailureOrSuccess;
+  final Either<AuthFailure, AuthResponseModel>? authFailureOrSuccess;
 
   @override
   String toString() {
@@ -876,7 +876,7 @@ abstract class _LoginFormState implements AuthenticationState {
           final bool showErrorMessage,
           final bool authenticationSuccess,
           final bool obscurePassword,
-          final Either<AuthFailure, Unit>? authFailureOrSuccess}) =
+          final Either<AuthFailure, AuthResponseModel>? authFailureOrSuccess}) =
       _$LoginFormStateImpl;
 
   @override
@@ -894,7 +894,7 @@ abstract class _LoginFormState implements AuthenticationState {
   @override
   bool get obscurePassword;
   @override
-  Either<AuthFailure, Unit>? get authFailureOrSuccess;
+  Either<AuthFailure, AuthResponseModel>? get authFailureOrSuccess;
   @override
   @JsonKey(ignore: true)
   _$$LoginFormStateImplCopyWith<_$LoginFormStateImpl> get copyWith =>

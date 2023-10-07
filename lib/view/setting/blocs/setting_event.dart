@@ -1,8 +1,8 @@
 part of 'setting_bloc.dart';
 
-abstract class SettingEvent {}
 
-class SignUpEvent extends SettingEvent {
-  SignUpEvent();
+@freezed
+class SettingEvent with _$SettingEvent {
+  const factory SettingEvent.setDarkMode(bool isDarkMode) = _SetDarkMode;
+  const factory SettingEvent.getDarkMode() = _GetDarkMode;
 }
-

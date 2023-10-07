@@ -7,7 +7,10 @@ class AuthButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton.icon(
+    return
+    ClipRRect(borderRadius: BorderRadius.circular(16),
+      child:
+      ElevatedButton.icon(
       onPressed: () {
         context.read<AuthBloc>().add(
           const AuthEvent.loginSubmitted(),
@@ -24,6 +27,7 @@ class AuthButton extends StatelessWidget {
         style:     Theme.of(context).textTheme.labelLarge?.copyWith(color: Theme.of(context).colorScheme.primary),
 
         ),
+      ),
     );
   }
 }

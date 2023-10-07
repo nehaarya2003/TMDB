@@ -61,7 +61,7 @@ dependencies:
   vexana: ^3.5.4
   json_serializable: ^6.7.1
   json_annotation: ^4.8.1
-
+  fluttertoast: ^8.2.2
 
 dev_dependencies:
   flutter_test:
