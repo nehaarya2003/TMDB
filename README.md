@@ -1,10 +1,6 @@
-# sample
+A Completed Functional Flutter App - TMDB (BLoC + GoRouter + Get_it + Injectable + Dio  Firebase Auth)
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
+<img height="300" src="/Users/nehaagrawal/Desktop/Screenshot 2023-10-09 at 2.04.49 PM.png" width="200"/>
 
 A few resources to get you started if this is your first Flutter project:
 
