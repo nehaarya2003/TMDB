@@ -1,4 +1,8 @@
+
+
 A Completed Functional Flutter App - TMDB (BLoC + GoRouter + Get_it + Injectable + Dio  Firebase Auth)
+
+
 
 <img height="300" src="https://github.com/nehaarya2003/TMDB/blob/develop/screenshots/Screenshot%202023-10-09%20at%202.04.49%20PM.png" width="200" alt=""/>
 
